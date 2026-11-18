@@ -1,0 +1,20 @@
+---
+// Services — copy: src/content/pages/services.md + src/content/services/*.md
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ServiceList from '../components/ServiceList.astro';
+import SundialPromo from '../components/SundialPromo.astro';
+import BookDemoButton from '../components/BookDemoButton.astro';
+import { getPage } from '../lib/content';
+
+const { title, description, heading, intro } = (await getPage('services')).data;
+---
+
+<SiteLayout title={title} description={description}>
+  <PageIntro heading={heading} intro={intro} />
+  <section aria-label="Services" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+    <ServiceList detail />
+    <div class="mt-10"><BookDemoButton /></div>
+  </section>
+  <SundialPromo />
+</SiteLayout>

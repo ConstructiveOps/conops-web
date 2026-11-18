@@ -1,0 +1,27 @@
+---
+// Landing pages: one per file in src/content/landing/ → /lp/<file name>.
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import BookDemoButton from '../../components/BookDemoButton.astro';
+
+export const getStaticPaths = (async () => {
+  const pages = await getCollection('landing');
+  return pages.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { title, description, heading, intro, brand, index } = entry.data;
+const { Content } = await render(entry);
+---
+
+<LandingLayout title={title} description={description} brand={brand} index={index}>
+  <PageIntro heading={heading} intro={intro} display>
+    <div class="mt-8"><BookDemoButton /></div>
+  </PageIntro>
+  <article class="prose-body mx-auto max-w-3xl px-4 pb-16 text-lg text-ink-muted sm:px-6">
+    <Content />
+  </article>
+  <div class="mx-auto max-w-3xl px-4 pb-20 sm:px-6"><BookDemoButton /></div>
+</LandingLayout>

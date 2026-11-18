@@ -1,0 +1,63 @@
+---
+// Shared <head> and page shell for every page on both domains.
+import '../styles/global.css';
+import { Font } from 'astro:assets';
+import Analytics from '@vercel/analytics/astro';
+import ChatWidget from '../components/ChatWidget.astro';
+import { site } from '../data/site';
+import { canonicalFor } from '../lib/urls';
+
+interface Props {
+  title: string;
+  description: string;
+  brand: 'co' | 'sundial';
+  /** Force noindex even after launch (landing pages). */
+  noindex?: boolean;
+}
+
+const { title, description, brand, noindex = false } = Astro.props;
+const canonical = canonicalFor(Astro.url.pathname);
+const robots = !site.launched || noindex ? 'noindex, nofollow' : 'index, follow';
+const favicon = brand === 'sundial' ? '/favicon-sundial-32.png' : '/favicon-co-32.png';
+const touchIcon = brand === 'sundial' ? '/apple-touch-icon-sundial.png' : '/apple-touch-icon-co.png';
+const siteName = brand === 'sundial' ? 'Sundial' : site.company.name;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="32x32" href={favicon} />
+    <link rel="apple-touch-icon" href={touchIcon} />
+    <meta name="theme-color" content="#023568" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <Font cssVariable="--font-montserrat" preload />
+    <Font cssVariable="--font-inter" preload />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh flex flex-col bg-surface text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow"
+    >
+      Skip to content
+    </a>
+    <slot name="header" />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+    {/* Reserved slot for the chat widget (built later). Renders nothing until enabled in site.ts. */}
+    <slot name="chat-widget"><ChatWidget /></slot>
+    <Analytics />
+  </body>
+</html>

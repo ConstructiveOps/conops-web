@@ -1,0 +1,21 @@
+---
+// Sundial pages (src/pages/sundial/**), served at the root of sundialcrm.com.
+// Links out of this layout must use sundialUrl()/coUrl() — never relative
+// links to Constructive Operations pages. No Client Portal link here, and
+// never any link to the Sundial demo portal: the CTA is always "book a demo".
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} brand="sundial">
+  <SiteHeader slot="header" brand="sundial" />
+  <slot />
+  <SiteFooter slot="footer" brand="sundial" />
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+// Header for both brands. The mobile menu uses <details>, so it needs no JavaScript.
+import { Image } from 'astro:assets';
+import BookDemoButton from './BookDemoButton.astro';
+import { coNav, sundialNav } from '../data/site';
+import { navHref, sundialUrl } from '../lib/urls';
+import coLogo from '../assets/brand/co-logo-wide.png';
+import sundialLogo from '../assets/brand/sundial-logo.png';
+
+interface Props {
+  brand: 'co' | 'sundial';
+  /** Landing pages show only the logo and the CTA. */
+  minimal?: boolean;
+}
+const { brand, minimal = false } = Astro.props;
+const nav = brand === 'sundial' ? sundialNav : coNav;
+const homeHref = brand === 'sundial' ? sundialUrl('/') : '/';
+---
+
+<header class:list={['border-b border-brand-gray/40', brand === 'sundial' ? 'bg-sundial-panel' : 'bg-white']}>
+  {brand === 'sundial' && <div class="h-1 bg-accent" aria-hidden="true"></div>}
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
+    <a href={homeHref} class="shrink-0">
+      {
+        brand === 'sundial' ? (
+          <Image src={sundialLogo} alt="Sundial — Operations Intelligence" width={180} height={60} loading="eager" class="h-[60px] w-[180px]" />
+        ) : (
+          <Image src={coLogo} alt="Constructive Operations" width={212} height={36} loading="eager" class="h-9 w-[212px]" />
+        )
+      }
+    </a>
+
+    {
+      !minimal && (
+        <nav aria-label="Main" class="hidden items-center gap-6 md:flex">
+          <ul class="flex items-center gap-6 font-heading text-sm font-semibold lowercase text-navy">
+            {nav.map((item) => (
+              <li>
+                <a href={navHref(item, brand)} class="hover:underline underline-offset-4">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+          <BookDemoButton />
+        </nav>
+      )
+    }
+
+    {minimal && <BookDemoButton />}
+
+    {
+      !minimal && (
+        <details class="group relative md:hidden">
+          <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-brand-gray text-navy [&::-webkit-details-marker]:hidden">
+            <span class="sr-only">Menu</span>
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7h16M4 12h16M4 17h16" class="group-open:hidden" />
+              <path d="M6 6l12 12M18 6L6 18" class="hidden group-open:block" />
+            </svg>
+          </summary>
+          <nav aria-label="Main" class="absolute right-0 z-40 mt-2 w-64 rounded-md border border-brand-gray/40 bg-white p-4 shadow-lg">
+            <ul class="space-y-3 font-heading font-semibold lowercase text-navy">
+              {nav.map((item) => (
+                <li>
+                  <a href={navHref(item, brand)} class="block py-1">{item.label}</a>
+                </li>
+              ))}
+            </ul>
+            <BookDemoButton class="mt-4 w-full" />
+          </nav>
+        </details>
+      )
+    }
+  </div>
+</header>

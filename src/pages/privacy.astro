@@ -1,0 +1,18 @@
+---
+// Privacy — copy: src/content/pages/privacy.md (Markdown body)
+import { render } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { getPage } from '../lib/content';
+
+const page = await getPage('privacy');
+const { title, description, heading, intro } = page.data;
+const { Content } = await render(page);
+---
+
+<SiteLayout title={title} description={description}>
+  <PageIntro heading={heading} intro={intro} />
+  <article class="prose-body mx-auto max-w-3xl px-4 pb-20 text-ink-muted sm:px-6">
+    <Content />
+  </article>
+</SiteLayout>

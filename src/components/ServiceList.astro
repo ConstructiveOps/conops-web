@@ -1,0 +1,27 @@
+---
+// Services from src/content/services, in `order`. `detail` also renders each body.
+import { getCollection, render } from 'astro:content';
+
+interface Props {
+  detail?: boolean;
+}
+const { detail = false } = Astro.props;
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(services.map(async (s) => ({ s, Content: detail ? (await render(s)).Content : null })));
+---
+
+<ul class="grid gap-6 sm:grid-cols-2">
+  {
+    rendered.map(({ s, Content }) => (
+      <li class="rounded-lg border border-brand-gray/50 bg-white p-6">
+        <h3 class="font-heading text-lg font-bold text-navy">{s.data.title}</h3>
+        <p class="mt-2 text-ink-muted">{s.data.summary}</p>
+        {Content && (
+          <div class="prose-body mt-4 text-sm text-ink-muted">
+            <Content />
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>

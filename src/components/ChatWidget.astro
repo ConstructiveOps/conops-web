@@ -1,0 +1,8 @@
+---
+// RESERVED: the chat widget is built in a later step. It must not link to or
+// embed the Sundial demo portal. While site.chatWidget.enabled is false this
+// renders nothing, so it costs no bytes and causes no layout shift.
+import { site } from '../data/site';
+---
+
+{site.chatWidget.enabled && <div id="chat-widget-root" data-chat-widget></div>}

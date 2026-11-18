@@ -1,0 +1,17 @@
+---
+// Lowercase one-word headings with a full stop ("services.", "about."),
+// carried over from the original site as a house style.
+interface Props {
+  text: string;
+  level?: 1 | 2 | 3;
+  tone?: 'navy' | 'white';
+  id?: string;
+}
+const { text, level = 2, tone = 'navy', id } = Astro.props;
+const Tag = `h${level}` as 'h1' | 'h2' | 'h3';
+const size = level === 1 ? 'text-4xl sm:text-5xl' : level === 2 ? 'text-3xl sm:text-4xl' : 'text-xl';
+---
+
+<Tag id={id} class:list={['font-heading font-bold lowercase tracking-tight', size, tone === 'white' ? 'text-white' : 'text-navy']}>
+  {text}
+</Tag>

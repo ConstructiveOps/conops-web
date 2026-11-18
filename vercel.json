@@ -1,0 +1,46 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "www.constructiveoperations.com" }],
+      "status": 308,
+      "headers": { "Location": "https://constructiveoperations.com/$1" }
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "www.sundialcrm.com" }],
+      "status": 308,
+      "headers": { "Location": "https://sundialcrm.com/$1" }
+    },
+    {
+      "src": "/sundial(?:/(.*))?",
+      "has": [{ "type": "host", "value": "constructiveoperations.com" }],
+      "status": 308,
+      "headers": { "Location": "https://sundialcrm.com/$1" }
+    },
+    {
+      "src": "/embed-tool/?",
+      "has": [{ "type": "host", "value": "constructiveoperations.com" }],
+      "status": 308,
+      "headers": { "Location": "/" }
+    },
+    {
+      "src": "/robots\\.txt",
+      "has": [{ "type": "host", "value": "sundialcrm.com" }],
+      "dest": "/robots-sundial.txt"
+    },
+    {
+      "src": "/sitemap\\.xml",
+      "has": [{ "type": "host", "value": "sundialcrm.com" }],
+      "dest": "/sitemap-sundial.xml"
+    },
+    {
+      "src": "/((?!_astro/|_vercel/|sundial(?:/|$)|robots-sundial\\.txt|sitemap-sundial\\.xml|favicon-|apple-touch-icon-|404).*)",
+      "has": [{ "type": "host", "value": "sundialcrm.com" }],
+      "dest": "/sundial/$1"
+    }
+  ]
+}

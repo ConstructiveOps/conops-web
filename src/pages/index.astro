@@ -1,0 +1,69 @@
+---
+// Home — constructiveoperations.com/. Copy: src/content/pages/home.md
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContentSection from '../components/ContentSection.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceList from '../components/ServiceList.astro';
+import SundialPromo from '../components/SundialPromo.astro';
+import BookDemoButton from '../components/BookDemoButton.astro';
+import { getPage } from '../lib/content';
+
+const page = await getPage('home');
+const { title, description, heading, intro, sections, definition } = page.data;
+const find = (id: string) => sections.find((s) => s.id === id);
+const about = find('about');
+const solution = find('solution');
+const brand = find('brand');
+const contact = find('contact');
+---
+
+<SiteLayout title={title} description={description}>
+  <PageIntro heading={heading} intro={intro} display>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <BookDemoButton />
+      <a href="/services" class="inline-flex items-center rounded-md border-2 border-navy px-5 py-3 font-heading text-sm font-semibold text-navy">Our services</a>
+    </div>
+  </PageIntro>
+
+  {
+    definition && (
+      <section aria-label="Definition of constructive" class="bg-navy">
+        <div class="mx-auto max-w-6xl px-4 py-12 text-white sm:px-6">
+          <p class="font-heading text-3xl font-bold">
+            {definition.word} <span class="font-body text-lg font-normal italic text-white/80">({definition.partOfSpeech})</span>
+          </p>
+          <p class="mt-3 text-lg text-white/90">1. {definition.meaning}</p>
+          {definition.synonyms.length > 0 && (
+            <p class="mt-2 text-sm text-white/75">Synonyms: {definition.synonyms.join(', ')}</p>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  {about && <ContentSection section={about} />}
+
+  <section id="services" aria-labelledby="services-heading" class="bg-surface-alt scroll-mt-6">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading id="services-heading" text="services." />
+      <div class="mt-8"><ServiceList /></div>
+    </div>
+  </section>
+
+  {solution && <ContentSection section={solution} />}
+  {brand && <ContentSection section={brand} tone="alt" />}
+
+  <SundialPromo />
+
+  {
+    contact && (
+      <ContentSection section={contact} tone="navy">
+        <div class="mt-8 flex flex-wrap gap-4">
+          <BookDemoButton variant="inverse" label="Book a 30-minute demo" />
+          <a href="/contact" class="inline-flex items-center rounded-md border-2 border-white px-5 py-3 font-heading text-sm font-semibold text-white">Contact us</a>
+        </div>
+      </ContentSection>
+    )
+  }
+</SiteLayout>

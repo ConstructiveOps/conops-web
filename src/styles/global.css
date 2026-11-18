@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/*
+  Brand tokens. Change colours and fonts here only.
+
+  Contrast notes (WCAG):
+  - navy on white: 12.3:1 — any text.
+  - brand-gray (#9CA1A4) on white: 2.6:1 — FAILS for text. Lines, borders,
+    icons and large decorative type only. Use ink-muted for small gray text.
+  - ink-muted on white: 6.0:1 — body and secondary text.
+  - accent: Sundial only. PLACEHOLDER value (deliberately loud) until a colour
+    is chosen. See DECISIONS.md / TASKS.md for the three proposed options.
+*/
+@theme inline {
+  --color-navy: #023568;
+  --color-navy-deep: #01264b;
+  --color-brand-gray: #9ca1a4;
+  --color-ink: #0b1b2e;
+  --color-ink-muted: #5f6468;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f6f8;
+  --color-accent: #ff00ff; /* PLACEHOLDER — Sundial accent not chosen yet */
+  /* Matches the off-white background baked into the Sundial logo PNGs. */
+  --color-sundial-panel: #fefefe;
+
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-inter);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: var(--color-surface);
+    -webkit-text-size-adjust: 100%;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+  }
+  .bg-navy :focus-visible,
+  .bg-navy-deep :focus-visible {
+    outline-color: #ffffff;
+  }
+}
+
+/* Smooth scrolling only for people who have not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible marker for copy that is not final. Used by <Text> and in Markdown
+   as <p class="placeholder">PLACEHOLDER: ...</p>. */
+.placeholder {
+  outline: 2px dashed #b45309;
+  outline-offset: 4px;
+  background: #fff7ed;
+  color: #7c2d12;
+  border-radius: 4px;
+}
+.placeholder-badge {
+  display: inline-block;
+  margin-right: 0.5em;
+  padding: 0 0.4em;
+  border-radius: 3px;
+  background: #b45309;
+  color: #fff;
+  font: 700 0.7rem/1.6 var(--font-body);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+/* Long-form Markdown (privacy, landing page bodies). */
+.prose-body > * + * { margin-top: 1em; }
+.prose-body h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2em; }
+.prose-body h3 { font-size: 1.15rem; font-weight: 700; margin-top: 1.5em; }
+.prose-body ul { list-style: disc; padding-left: 1.5em; }
+.prose-body a { color: var(--color-navy); text-decoration: underline; }

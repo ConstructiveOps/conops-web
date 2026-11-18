@@ -1,0 +1,14 @@
+---
+// About — copy: src/content/pages/about.md
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContentSection from '../components/ContentSection.astro';
+import { getPage } from '../lib/content';
+
+const { title, description, heading, intro, sections } = (await getPage('about')).data;
+---
+
+<SiteLayout title={title} description={description}>
+  <PageIntro heading={heading} intro={intro} />
+  {sections.map((s, i) => <ContentSection section={s} tone={i % 2 === 0 ? 'alt' : 'plain'} />)}
+</SiteLayout>

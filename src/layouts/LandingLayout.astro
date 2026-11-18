@@ -1,0 +1,21 @@
+---
+// Landing pages under /lp/. Stripped-down header (logo + book a demo),
+// noindex unless the page opts in AND the site is launched.
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  brand: 'co' | 'sundial';
+  index?: boolean;
+}
+const { title, description, brand, index = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} brand={brand} noindex={!index}>
+  <SiteHeader slot="header" brand={brand} minimal />
+  <slot />
+  <SiteFooter slot="footer" brand={brand} />
+</BaseLayout>

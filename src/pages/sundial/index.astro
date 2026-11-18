@@ -1,0 +1,50 @@
+---
+// Sundial — served at https://sundialcrm.com/ (vercel.json). Copy:
+// src/content/pages/sundial.md. CTA is always "book a demo"; images are
+// screenshots we supply (ScreenshotSlot). Never link the demo portal.
+import SundialLayout from '../../layouts/SundialLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ContentSection from '../../components/ContentSection.astro';
+import ScreenshotSlot from '../../components/ScreenshotSlot.astro';
+import BookDemoButton from '../../components/BookDemoButton.astro';
+import { getPage } from '../../lib/content';
+import { coUrl } from '../../lib/urls';
+
+const { title, description, heading, intro, sections } = (await getPage('sundial')).data;
+const find = (id: string) => sections.find((s) => s.id === id);
+const overview = find('overview');
+const seeIt = find('see-it');
+const services = find('services');
+---
+
+<SundialLayout title={title} description={description}>
+  <div class="bg-sundial-panel">
+    <PageIntro heading={heading} intro={intro}>
+      <div class="mt-8"><BookDemoButton /></div>
+    </PageIntro>
+  </div>
+
+  {overview && <ContentSection section={overview} />}
+
+  {
+    seeIt && (
+      <ContentSection section={seeIt} tone="alt">
+        <div class="mt-8 grid gap-8 md:grid-cols-2">
+          <ScreenshotSlot alt="Sundial dashboard" />
+          <ScreenshotSlot alt="Sundial project view" />
+        </div>
+        <div class="mt-8"><BookDemoButton /></div>
+      </ContentSection>
+    )
+  }
+
+  {
+    services && (
+      <ContentSection section={services}>
+        <a href={coUrl('/services')} class="mt-6 inline-flex items-center gap-2 font-heading font-semibold text-navy underline underline-offset-4">
+          Constructive Operations back-office services <span aria-hidden="true">→</span>
+        </a>
+      </ContentSection>
+    )
+  }
+</SundialLayout>

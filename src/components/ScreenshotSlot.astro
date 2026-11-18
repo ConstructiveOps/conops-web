@@ -1,0 +1,35 @@
+---
+// Fixed-shape slot for a Sundial screenshot or recording WE supply.
+// The box keeps its size before the image exists, so nothing shifts.
+// Never embed or link the demo portal here.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  /** Leave empty to show the placeholder. */
+  src?: ImageMetadata;
+  alt: string;
+  caption?: string;
+  /** e.g. "16 / 10" */
+  ratio?: string;
+}
+const { src, alt, caption, ratio = '16 / 10' } = Astro.props;
+---
+
+<figure>
+  <div class="overflow-hidden rounded-lg border border-brand-gray/50 bg-surface-alt" style={`aspect-ratio: ${ratio}`}>
+    {
+      src ? (
+        <Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes="(min-width: 1024px) 960px, 100vw" class="h-full w-full object-cover" />
+      ) : (
+        <div class="placeholder flex h-full w-full items-center justify-center p-6 text-center text-sm">
+          <p>
+            <span class="placeholder-badge">Placeholder</span>
+            Screenshot to be supplied: {alt}
+          </p>
+        </div>
+      )
+    }
+  </div>
+  {caption && <figcaption class="mt-2 text-sm text-ink-muted">{caption}</figcaption>}
+</figure>

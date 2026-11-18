@@ -1,0 +1,27 @@
+---
+// Top-of-page heading + intro paragraphs. Pass `display` for the large
+// sentence-case hero heading (home); otherwise uses the lowercase house style.
+import SectionHeading from './SectionHeading.astro';
+import Text from './Text.astro';
+
+interface Props {
+  heading: string;
+  intro: string[];
+  display?: boolean;
+}
+const { heading, intro, display = false } = Astro.props;
+---
+
+<div class="mx-auto max-w-6xl px-4 pb-10 pt-14 sm:px-6 sm:pt-20">
+  {
+    display ? (
+      <h1 class="max-w-4xl font-heading text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">{heading}</h1>
+    ) : (
+      <SectionHeading text={heading} level={1} />
+    )
+  }
+  <div class="mt-6 max-w-3xl space-y-4 text-lg text-ink-muted">
+    {intro.map((p) => <Text text={p} />)}
+  </div>
+  <slot />
+</div>
