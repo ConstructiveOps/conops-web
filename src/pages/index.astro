@@ -99,7 +99,7 @@ const wrap = 'mx-auto max-w-[1240px] px-4 sm:px-[6vw] xl:px-0';
         <SectionHeading id="contact-heading" text={home.contact.heading} />
         <p class="text-ink-soft">{home.contact.paragraph}</p>
         <div>
-          <ContactForm client:visible endpoint={site.contactFormEndpoint} isDev={import.meta.env.DEV} email={site.company.email} bookingUrl={site.bookingUrl} />
+          <ContactForm client:visible endpoint={site.contactFormEndpoint} isDev={import.meta.env.DEV} email={site.company.email} phone={site.company.phone} bookingUrl={site.bookingUrl} />
         </div>
       </div>
       <address class="flex min-w-0 flex-[1_1_280px] flex-col gap-1 self-start pt-2 not-italic text-ink-soft" data-reveal>

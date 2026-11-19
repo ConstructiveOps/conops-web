@@ -14,6 +14,10 @@ const textExt = /\.(astro|ts|tsx|js|mjs|cjs|json|md|mdx|css|html|txt|xml|yml|yam
 // Built-in phrases that would offer demo-portal access (CLAUDE.md rule).
 const builtIn = [/try the demo/i, /demo login/i, /log ?in to (the )?demo/i, /free trial/i, /sandbox account/i];
 
+// Files that hold these phrases on purpose, to catch them in chat replies or to
+// test that they are caught. They are still checked for block-list terms.
+const phraseRuleFiles = new Set(['api/_lib/filter.ts', 'tests/filter.test.ts', 'scripts/chat-trick-questions.ts']);
+
 const terms = existsSync(listPath)
   ? readFileSync(listPath, 'utf8').split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
   : [];
@@ -34,7 +38,7 @@ for (const file of walk(root)) {
   const lines = readFileSync(file, 'utf8').split(/\r?\n/);
   lines.forEach((line, i) => {
     for (const t of terms) if (line.toLowerCase().includes(t.toLowerCase())) hits.push(`${rel}:${i + 1}  [block list term]`);
-    for (const re of builtIn) if (re.test(line)) hits.push(`${rel}:${i + 1}  ${re}`);
+    if (!phraseRuleFiles.has(rel)) for (const re of builtIn) if (re.test(line)) hits.push(`${rel}:${i + 1}  ${re}`);
   });
 }
 

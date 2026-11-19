@@ -34,16 +34,21 @@ export const site = {
   clientPortalUrl: 'https://portal.constructiveoperations.com/home',
 
   /**
-   * Where the contact form POSTs (JSON). Empty = not connected yet: the form
-   * shows a "not connected" notice in development and a fallback message
-   * (email / book a demo) in production. A later step sets this to the AWS
-   * endpoint.
+   * Where the contact form POSTs (JSON): the Vercel function in api/contact.ts,
+   * which forwards to Salesforce Web-to-Lead. The form first asks that address
+   * whether it is connected; if not (Salesforce settings missing, or `npm run
+   * dev`, which has no functions), it shows a "not connected" notice in
+   * development and the email / book-a-demo fallback in production.
    */
-  contactFormEndpoint: '',
+  contactFormEndpoint: '/api/contact',
 
-  /** Reserved for the chat widget, built later. Nothing renders while false. */
+  /**
+   * Chat assistant (api/chat.ts). While false, no launcher is rendered on any
+   * page. The server has its own switch too: CHAT_ENABLED=true in Vercel.
+   */
   chatWidget: {
     enabled: false,
+    endpoint: '/api/chat',
   },
 
   social: {

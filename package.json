@@ -7,21 +7,26 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-chat-knowledge.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "knowledge": "node scripts/build-chat-knowledge.mjs",
     "check:types": "astro check",
     "check:clean": "node scripts/check-clean.mjs",
-    "check": "astro check && astro build && node scripts/check-clean.mjs",
+    "check": "node scripts/build-chat-knowledge.mjs && astro check && astro build && node scripts/check-clean.mjs",
+    "test": "vitest run",
+    "chat:questions": "tsx scripts/chat-trick-questions.ts",
     "fonts:convert": "node scripts/convert-fonts.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.11.0",
     "@astrojs/react": "^7.1.9",
     "@astrojs/sitemap": "^3.7.6",
     "@fontsource/roboto": "^5.3.0",
     "@tailwindcss/vite": "^4.3.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@upstash/redis": "^1.41.0",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.4.13",
     "react": "^19.3.1",
@@ -30,8 +35,12 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "wawoff2": "^2.0.1"
+    "vitest": "^5.1.1",
+    "wawoff2": "^2.0.1",
+    "yaml": "^2.9.1"
   },
   "private": true
 }

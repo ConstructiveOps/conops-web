@@ -1,6 +1,6 @@
 ---
-// Contact — copy: src/content/pages/contact.md. Form submit address:
-// src/data/site.ts → contactFormEndpoint (empty = not connected yet).
+// Contact — copy: src/content/pages/contact.md. Form submit address (api/contact.ts):
+// src/data/site.ts → contactFormEndpoint.
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import BookDemoButton from '../components/BookDemoButton.astro';
@@ -25,6 +25,7 @@ const { title, description, heading, intro } = (await getPage('contact')).data;
           endpoint={site.contactFormEndpoint}
           isDev={import.meta.env.DEV}
           email={site.company.email}
+          phone={site.company.phone}
           bookingUrl={site.bookingUrl}
         />
       </div>

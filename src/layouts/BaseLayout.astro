@@ -62,8 +62,8 @@ const siteName = brand === 'sundial' ? 'Sundial' : site.company.name;
       <slot />
     </main>
     <slot name="footer" />
-    {/* Reserved slot for the chat widget (built later). Renders nothing until enabled in site.ts. */}
-    <slot name="chat-widget"><ChatWidget /></slot>
+    {/* Chat assistant launcher. Renders nothing until site.chatWidget.enabled is true. */}
+    <slot name="chat-widget"><ChatWidget brand={brand} /></slot>
     <Analytics />
     <script>
       // Fade each [data-reveal] section in once, the first time it scrolls into view.

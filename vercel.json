@@ -38,7 +38,7 @@
       "dest": "/sitemap-sundial.xml"
     },
     {
-      "src": "/((?!_astro/|_vercel/|sundial(?:/|$)|robots-sundial\\.txt|sitemap-sundial\\.xml|favicon-|apple-touch-icon-|404).*)",
+      "src": "/((?!api/|_astro/|_vercel/|sundial(?:/|$)|robots-sundial\\.txt|sitemap-sundial\\.xml|favicon-|apple-touch-icon-|404).*)",
       "has": [{ "type": "host", "value": "sundialcrm.com" }],
       "dest": "/sundial/$1"
     }

@@ -73,6 +73,8 @@ from them.
   show the per-project price.
 - Settings (launch switch, domains, booking link, contact details, form submit
   address, chat widget switch, nav): `src/data/site.ts`.
+- Privacy page (`src/content/pages/privacy.md`) keeps its visible "Draft" marker
+  until Tim confirms the wording has been reviewed.
 - Colours and fonts (tokens): `src/styles/global.css` (`@theme`) and the
   `fonts` block in `astro.config.mjs`. EuroStyle (one weight, `font-display` utility,
   never bold) ONLY at 22px and up: main headlines, section sub-headlines, stat numbers
@@ -92,7 +94,21 @@ from them.
 - Original brand files: `brand/` (never served). Web copies with simple names:
   `src/assets/brand/`.
 - Domain routing and redirects: `vercel.json` (`routes`, because routes run
-  before static files; plain `rewrites` would not override `/`).
+  before static files; plain `rewrites` would not override `/`). The sundialcrm.com
+  catch-all must keep excluding `api/`.
+- Server code: ONLY the Vercel functions in `api/` (pages stay static).
+  `api/contact.ts` (form → Salesforce Web-to-Lead) and `api/chat.ts` (chat →
+  Claude); shared code in `api/_lib/`. Settings are environment variables listed
+  in `.env.example`. Leads are live only when `LEAD_MODE=live` AND
+  `site.launched` is true; otherwise they are test leads. Every chat reply passes
+  `api/_lib/filter.ts` (prices, block list, demo-portal phrases, outside links).
+  Imports inside `api/` end in `.js` (they compile to ES modules).
+- Chat fact sheet: `api/_generated/knowledge.ts`, generated from `src/data` and
+  `src/content` by `scripts/build-chat-knowledge.mjs` (runs in `npm run build`
+  and `npm run check`; committed; a test fails if it is stale). Copy changes
+  reach the chat on the next build.
+- Chat launcher/panel: `src/components/ChatWidget.astro` +
+  `src/components/islands/ChatPanel.tsx` (loaded on first click).
 
 ## Accessibility and performance
 
@@ -114,7 +130,11 @@ from them.
 - `npm run check` passes: type check (`astro check`), build, and
   `scripts/check-clean.mjs` (block list kept **outside** the repo at
   `..\conops-web-blocklist.txt`, plus built-in demo-portal phrases).
+- `npm test` passes (vitest: form and chat functions, limits, reply filter,
+  fact sheet).
 - New copy has no invented claims; unfinished copy is marked as a placeholder.
+- `npm run chat:questions` calls the real Claude API and costs money: ask Tim
+  before running it.
 
 ## How Tim works
 
