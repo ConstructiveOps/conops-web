@@ -1,7 +1,12 @@
 ---
-title: "Project management, point of sale to PTO"
-summary: "We help take your solar projects from the point of sale through PTO more efficiently and more effectively."
-order: 1
+title: "Project management"
+summary: "Complete pipeline management: homeowner, sales, installer and subcontractor communication and scheduling, milestone notifications, and complete visibility throughout the process."
+icon: icon08
+order: 6
+points:
+  - "Weekly pipeline reports"
+  - "Complete project visibility through client and sales portals"
+  - "Milestone completion notifications"
+  - "Duration accountability"
+  - "Post-install service coordination"
 ---
-
-<p class="placeholder"><span class="placeholder-badge">Placeholder</span>Detail on what project management covers, written by Constructive Operations.</p>

@@ -1,0 +1,33 @@
+---
+// Large gray ring shapes used as decoration on navy grounds (from the deck).
+// Purely decorative: hidden from screen readers, never intercept clicks.
+// The parent must be `relative overflow-hidden`.
+interface Props {
+  variant?: 'hero' | 'corner' | 'pair';
+}
+const { variant = 'hero' } = Astro.props;
+---
+
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+  {
+    variant === 'hero' && (
+      <>
+        <div class="absolute -right-[230px] -top-[260px] size-[560px] rounded-full border-[44px] border-brand-gray opacity-35" />
+        <div class="absolute -bottom-[210px] -left-[170px] size-[380px] rounded-full border-[30px] border-brand-gray opacity-35" />
+      </>
+    )
+  }
+  {
+    variant === 'corner' && (
+      <div class="absolute -bottom-[240px] -right-[200px] size-[520px] rounded-full border-[40px] border-brand-gray opacity-25" />
+    )
+  }
+  {
+    variant === 'pair' && (
+      <>
+        <div class="absolute -left-[180px] -top-[200px] size-[420px] rounded-full border-[34px] border-brand-gray opacity-25" />
+        <div class="absolute -bottom-[160px] -right-[120px] size-[320px] rounded-full border-[26px] border-brand-gray opacity-25" />
+      </>
+    )
+  }
+</div>

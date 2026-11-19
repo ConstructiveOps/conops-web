@@ -20,30 +20,34 @@ export default defineConfig({
     }),
   ],
 
-  // Fonts are self-hosted from the installed @fontsource-variable packages
-  // (latin subset, no request to Google). Astro generates size-matched fallbacks so text
-  // does not jump when the web font arrives. To swap a font: install its
-  // package, change it here, and keep the cssVariable names.
+  // Fonts are self-hosted (no request to Google). Astro generates
+  // size-matched fallbacks so text does not jump when a web font arrives.
+  // - EuroStyle: brand display face (headline, nav, buttons, card titles).
+  //   ONE weight only (400). Never set it bold: font-synthesis is off.
+  //   Source TTF in brand/fonts; woff2 made by scripts/convert-fonts.mjs.
+  // - Roboto 700: lowercase section headings. Roboto 400/500: body.
+  // To swap a font, change it here and keep the cssVariable names.
   fonts: [
     {
       provider: fontProviders.local(),
-      name: 'Montserrat',
-      cssVariable: '--font-montserrat',
+      name: 'EuroStyle',
+      cssVariable: '--font-eurostyle',
       fallbacks: ['sans-serif'],
       options: {
-        variants: [
-          { src: ['./node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2'], weight: '100 900', style: 'normal' },
-        ],
+        variants: [{ src: ['./src/assets/fonts/EuroStyle-Normal.woff2'], weight: '400', style: 'normal' }],
       },
     },
     {
       provider: fontProviders.local(),
-      name: 'Inter',
-      cssVariable: '--font-inter',
+      name: 'Roboto',
+      cssVariable: '--font-roboto',
       fallbacks: ['sans-serif'],
       options: {
         variants: [
-          { src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2'], weight: '100 900', style: 'normal' },
+          { src: ['./node_modules/@fontsource/roboto/files/roboto-latin-400-normal.woff2'], weight: '400', style: 'normal' },
+          { src: ['./node_modules/@fontsource/roboto/files/roboto-latin-400-italic.woff2'], weight: '400', style: 'italic' },
+          { src: ['./node_modules/@fontsource/roboto/files/roboto-latin-500-normal.woff2'], weight: '500', style: 'normal' },
+          { src: ['./node_modules/@fontsource/roboto/files/roboto-latin-700-normal.woff2'], weight: '700', style: 'normal' },
         ],
       },
     },

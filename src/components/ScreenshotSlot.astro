@@ -1,35 +1,44 @@
 ---
-// Fixed-shape slot for a Sundial screenshot or recording WE supply.
-// The box keeps its size before the image exists, so nothing shifts.
+// Fixed-shape slot for a screenshot, photo or recording WE supply. Until the
+// file exists it shows the mock-up's bracketed label and description in a
+// dashed box. The box keeps its size either way, so nothing shifts.
 // Never embed or link the demo portal here.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
-  /** Leave empty to show the placeholder. */
+  /** e.g. "[SCREEN RECORDING]" */
+  label: string;
+  description: string;
+  /** Supply later; leave empty to show the dashed placeholder. */
   src?: ImageMetadata;
-  alt: string;
-  caption?: string;
-  /** e.g. "16 / 10" */
+  alt?: string;
+  /** CSS aspect-ratio, e.g. "16 / 10". Omit for a text-only slot. */
   ratio?: string;
+  tone?: 'light' | 'dark';
+  class?: string;
 }
-const { src, alt, caption, ratio = '16 / 10' } = Astro.props;
+const { label, description, src, alt, ratio, tone = 'light', class: className = '' } = Astro.props;
+const box =
+  tone === 'dark'
+    ? 'bg-navy-panel border-[#9fb4cc] text-white'
+    : 'bg-[#e6e9ec] border-[#7b8186] text-ink-soft';
 ---
 
-<figure>
-  <div class="overflow-hidden rounded-lg border border-brand-gray/50 bg-surface-alt" style={`aspect-ratio: ${ratio}`}>
-    {
-      src ? (
-        <Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes="(min-width: 1024px) 960px, 100vw" class="h-full w-full object-cover" />
-      ) : (
-        <div class="placeholder flex h-full w-full items-center justify-center p-6 text-center text-sm">
-          <p>
-            <span class="placeholder-badge">Placeholder</span>
-            Screenshot to be supplied: {alt}
-          </p>
-        </div>
-      )
-    }
-  </div>
-  {caption && <figcaption class="mt-2 text-sm text-ink-muted">{caption}</figcaption>}
-</figure>
+{
+  src ? (
+    <div class:list={['overflow-hidden rounded-md', className]} style={ratio ? `aspect-ratio: ${ratio}` : undefined}>
+      <Image src={src} alt={alt ?? description} widths={[480, 800, 1200, 1600]} sizes="(min-width: 1024px) 640px, 100vw" class="h-full w-full object-cover" />
+    </div>
+  ) : (
+    <div
+      role="img"
+      aria-label={`Placeholder: ${description}`}
+      class:list={['flex flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed p-6 text-center text-[15px]', box, className]}
+      style={ratio ? `aspect-ratio: ${ratio}` : undefined}
+    >
+      <span class="font-display">{label}</span>
+      <span>{description}</span>
+    </div>
+  )
+}

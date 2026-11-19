@@ -4,17 +4,21 @@ Open items. Tick when done and note the date.
 
 ## Content and brand
 
-- [ ] Choose the Sundial accent colour (three options proposed 2026-11-18:
-      amber #C2780A, teal #21979B, sky #1D91CB). Set `--color-accent` in
-      `src/styles/global.css`.
+- [x] Choose the Sundial accent colour — amber #C2780A (2026-11-19).
 - [ ] Sundial logo as SVG (redrawn or traced) so it works on any background.
       Test `Sundial Logo - White.png` on navy meanwhile — it looks faint.
 - [ ] Replace every `PLACEHOLDER:` string and `.placeholder` block
-      (Sundial page, services details, about, privacy, sample landing page).
-- [ ] Supply Sundial screenshots/recordings for the Sundial page slots.
+      (about "our team.", privacy, sample landing page).
+- [ ] Supply Sundial media. Each dashed box names what it needs: the Sundial
+      hero video, five walkthrough recordings (step 4 in a phone frame), the home
+      page Sundial screen recording, and the home "your brand." visual.
+      Walkthrough videos go in `public/media/` and are listed in
+      `src/data/sundial.ts` (`video`, `poster`, `frame`).
+- [ ] Credit for `concrete-structure.jpg` (uploaded to Wix by us; source unknown).
+      See `src/assets/photos/CREDITS.md`.
+- [ ] Confirm the EuroStyle font licence covers web use (self-hosted woff2).
+- [ ] Reviews section: one named client quote once they agree in writing.
 - [ ] Re-confirm the carried-over claims "40 years" and "over 10,000 projects".
-- [ ] Testimonial from the Wix site: decide whether to use it. Needs the
-      person's written permission and how they want to be credited.
 - [ ] Privacy notice: legal review; add form data storage/retention once the
       form is connected.
 - [ ] Social sharing image (og:image) for each brand.

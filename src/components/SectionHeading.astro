@@ -1,17 +1,22 @@
 ---
-// Lowercase one-word headings with a full stop ("services.", "about."),
-// carried over from the original site as a house style.
+// Lowercase one-word section headings with a full stop ("services.",
+// "about."), in Roboto 700 — the house style carried over from the old site.
 interface Props {
   text: string;
   level?: 1 | 2 | 3;
   tone?: 'navy' | 'white';
+  size?: 'md' | 'lg' | 'sm';
   id?: string;
+  class?: string;
 }
-const { text, level = 2, tone = 'navy', id } = Astro.props;
+const { text, level = 2, tone = 'navy', size = 'lg', id, class: className = '' } = Astro.props;
 const Tag = `h${level}` as 'h1' | 'h2' | 'h3';
-const size = level === 1 ? 'text-4xl sm:text-5xl' : level === 2 ? 'text-3xl sm:text-4xl' : 'text-xl';
+const sizes = { lg: 'text-[32px] sm:text-[40px]', md: 'text-[26px] sm:text-[30px]', sm: 'text-xl' };
 ---
 
-<Tag id={id} class:list={['font-heading font-bold lowercase tracking-tight', size, tone === 'white' ? 'text-white' : 'text-navy']}>
+<Tag
+  id={id}
+  class:list={['font-heading font-bold lowercase leading-tight', sizes[size], tone === 'white' ? 'text-white' : 'text-navy', className]}
+>
   {text}
 </Tag>

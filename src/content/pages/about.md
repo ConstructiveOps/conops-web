@@ -13,5 +13,5 @@ sections:
     heading: "your team."
     paragraphs:
       - "Our services are white-labeled, so your customers will think it's all coming from you."
-      - "PLACEHOLDER: how we work alongside a contractor's own staff, written by Constructive Operations."
+      - "We create designs, submit permits, handle utility interconnection, process finance packages, and manage all homeowner communication, so your company runs faster, smoother, and more professionally without added staff."
 ---

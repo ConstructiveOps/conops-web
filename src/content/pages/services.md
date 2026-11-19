@@ -4,5 +4,5 @@ description: "Operations, project management, customer care and sales operations
 heading: "services."
 intro:
   - "From the point of sale through PTO, we handle the operations and customer care so you can focus on selling and building solar jobs."
-  - "PLACEHOLDER: one or two sentences introducing the services list, written by Constructive Operations."
+  - "Our white-labeled services cover every step between contract and PTO."
 ---

@@ -64,7 +64,8 @@ export const coNav: NavItem[] = [
 
 /** Navigation for the Sundial pages. */
 export const sundialNav: NavItem[] = [
-  { label: 'overview.', site: 'sundial', path: '/' },
+  { label: 'platform.', site: 'sundial', path: '/#platform' },
+  { label: 'features.', site: 'sundial', path: '/#features' },
+  { label: 'walkthrough.', site: 'sundial', path: '/#walkthrough' },
   { label: 'back-office services.', site: 'co', path: '/services' },
-  { label: 'contact.', site: 'co', path: '/contact' },
 ];

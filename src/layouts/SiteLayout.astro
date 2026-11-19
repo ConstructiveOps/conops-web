@@ -1,5 +1,6 @@
 ---
 // Constructive Operations pages (constructiveoperations.com).
+// headerTone="navy" is used by the home page, whose hero is navy.
 import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -7,12 +8,13 @@ import SiteFooter from '../components/SiteFooter.astro';
 interface Props {
   title: string;
   description: string;
+  headerTone?: 'light' | 'navy';
 }
-const { title, description } = Astro.props;
+const { title, description, headerTone = 'light' } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} brand="co">
-  <SiteHeader slot="header" brand="co" />
+  <SiteHeader slot="header" brand="co" tone={headerTone} />
   <slot />
   <SiteFooter slot="footer" brand="co" />
 </BaseLayout>

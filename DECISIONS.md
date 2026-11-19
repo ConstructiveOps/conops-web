@@ -2,6 +2,32 @@
 
 Newest first. Each entry: date, decision, why.
 
+## 2026-11-19 — Home and Sundial pages built to the approved design
+
+- **Fonts changed:** EuroStyle (one weight, self-hosted woff2, synthetic bold off)
+  for the main headline, nav, buttons and card titles; Roboto 700 for the lowercase
+  section headings; Roboto 400/500 for body. Montserrat and Inter removed.
+- **Accent chosen: amber #C2780A**, text on amber #14100a. Used on Sundial pages and
+  the home page's Sundial section only (the services page's Sundial section has no accent).
+- **Home hero = the animated process** from hero-process.reference.html, replacing
+  the photo hero and the "point of sale to PTO" step strip. Plays once when in view,
+  holds, Replay button; finished state under reduced motion or without JavaScript;
+  vertical timeline below 900px. The home page header is navy to sit on the hero.
+- **Services = the six from deck page 4**, five points each, summaries from the
+  data sheet. Points are written in sentence case (the deck uses title case and
+  capitals). The services page lists the same six cards.
+- **Copy moved to data files** for the home page (`src/data/home.ts`, `process.ts`)
+  and the Sundial page (`src/data/sundial.ts`); `home.md`, `sundial.md` and
+  `sundial-promo.md` were removed.
+- **Mock-up wording trimmed in one place:** the Sundial hero video description
+  referred to where the recording is made; trimmed so the site never mentions the
+  demo portal.
+- **Chat panel from the home mock-up not built**; its column holds the contact
+  details instead. `site.chatWidget.enabled` stays false.
+- **Footers follow the mock-ups:** Facebook link dropped from the footers (still in site.ts).
+- **Not used from the data sheet:** the tax credit / ITC deadline paragraphs and the
+  per-project price.
+
 ## 2026-11-18 — Initial setup (plan approved by Tim)
 
 - **Astro, static pages, Tailwind v4, TypeScript strict, React only for islands.**

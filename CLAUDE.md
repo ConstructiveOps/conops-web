@@ -60,13 +60,27 @@ from them.
 
 ## Where things live
 
-- Copy: `src/content/pages/*.md`, `src/content/services/*.md`,
-  `src/content/landing/*.md` (each landing file becomes `/lp/<name>`).
-  Field rules: `src/content.config.ts`.
+- Copy:
+  - Home page: `src/data/home.ts`; its animated process hero: `src/data/process.ts`
+    (step labels kept exactly as in the approved mock-up).
+  - Sundial page: `src/data/sundial.ts` (including the five walkthrough steps; each
+    step can take `video`, `poster` and `frame` later).
+  - Services (six cards): `src/content/services/*.md`.
+  - Other pages: `src/content/pages/*.md`; landing pages `src/content/landing/*.md`
+    (each file becomes `/lp/<name>`). Field rules: `src/content.config.ts`.
+- Approved design: `design-reference/` (mock-ups + source PDFs). Reference only, never
+  served. Do not use the data sheet's tax-credit / ITC deadline paragraphs, and never
+  show the per-project price.
 - Settings (launch switch, domains, booking link, contact details, form submit
   address, chat widget switch, nav): `src/data/site.ts`.
 - Colours and fonts (tokens): `src/styles/global.css` (`@theme`) and the
-  `fonts` block in `astro.config.mjs`.
+  `fonts` block in `astro.config.mjs`. EuroStyle (one weight, `font-display` utility,
+  never bold) for the main headline, nav, buttons and card titles; Roboto 700 for the
+  lowercase section headings; Roboto 400/500 for body. EuroStyle woff2 is made from
+  `brand/fonts/EuroStyle-Normal.ttf` by `npm run fonts:convert`.
+- Accent amber (`bg-accent`, text `text-on-accent`) on Sundial pages and the home
+  page's Sundial section ONLY.
+- Photos: `src/assets/photos/` with `CREDITS.md`.
 - Layouts: `BaseLayout` (head, noindex, canonical, analytics, skip link, chat
   widget slot) → `SiteLayout` / `SundialLayout` / `LandingLayout`.
 - React only for components that must run in the browser
@@ -81,7 +95,10 @@ from them.
 ## Accessibility and performance
 
 - Animation only inside `motion-safe:` or a `prefers-reduced-motion` check.
-  Nothing moves on its own.
+  Sections fade in once via `data-reveal` (only when `html.reveal-on` is set, which
+  BaseLayout adds when motion is allowed). The home hero process plays once and
+  holds; under reduced motion it shows the finished state. Walkthrough videos
+  never autoplay under reduced motion (poster only).
 - Images through Astro `<Image>`/`<Picture>` from `src/assets/` with width and
   height. No images straight from `public/` except favicons.
 - No layout shift: images and embeds have fixed sizes or `aspect-ratio`; fonts

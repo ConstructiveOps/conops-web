@@ -1,50 +1,109 @@
 ---
-// Sundial — served at https://sundialcrm.com/ (vercel.json). Copy:
-// src/content/pages/sundial.md. CTA is always "book a demo"; images are
-// screenshots we supply (ScreenshotSlot). Never link the demo portal.
+// Sundial — served at https://sundialcrm.com/ (vercel.json).
+// Spec: design-reference/sundial.reference.html. Copy: src/data/sundial.ts.
+// CTA is always "book a demo"; media are recordings we supply. Never link or
+// mention the demo portal. Accent amber is used on Sundial pages only.
+import { Image } from 'astro:assets';
 import SundialLayout from '../../layouts/SundialLayout.astro';
-import PageIntro from '../../components/PageIntro.astro';
-import ContentSection from '../../components/ContentSection.astro';
-import ScreenshotSlot from '../../components/ScreenshotSlot.astro';
+import Rings from '../../components/Rings.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import BookDemoButton from '../../components/BookDemoButton.astro';
-import { getPage } from '../../lib/content';
+import BrowserFrame from '../../components/BrowserFrame.astro';
+import ScreenshotSlot from '../../components/ScreenshotSlot.astro';
+import SundialWalkthrough from '../../components/SundialWalkthrough.astro';
+import { sundial as s } from '../../data/sundial';
 import { coUrl } from '../../lib/urls';
+import coLogo from '../../assets/brand/co-logo.png';
 
-const { title, description, heading, intro, sections } = (await getPage('sundial')).data;
-const find = (id: string) => sections.find((s) => s.id === id);
-const overview = find('overview');
-const seeIt = find('see-it');
-const services = find('services');
+const wrap = 'mx-auto max-w-[1240px] px-4 sm:px-[6vw] xl:px-0';
 ---
 
-<SundialLayout title={title} description={description}>
-  <div class="bg-sundial-panel">
-    <PageIntro heading={heading} intro={intro}>
-      <div class="mt-8"><BookDemoButton /></div>
-    </PageIntro>
-  </div>
-
-  {overview && <ContentSection section={overview} />}
-
-  {
-    seeIt && (
-      <ContentSection section={seeIt} tone="alt">
-        <div class="mt-8 grid gap-8 md:grid-cols-2">
-          <ScreenshotSlot alt="Sundial dashboard" />
-          <ScreenshotSlot alt="Sundial project view" />
+<SundialLayout title={s.title} description={s.description}>
+  <section id="top" aria-labelledby="sd-hero" class="on-dark relative overflow-hidden bg-navy-deep text-white">
+    <Rings variant="pair" />
+    <div class:list={[wrap, 'relative flex flex-wrap items-center gap-14 py-24']}>
+      <div class="flex min-w-0 flex-[999_1_480px] flex-col gap-[22px]">
+        <div class="h-1 w-16 bg-accent" aria-hidden="true"></div>
+        <h1 id="sd-hero" class="font-display text-[32px] leading-[1.06] text-white sm:text-[clamp(32px,3.7vw,52px)]">{s.hero.heading}</h1>
+        <p class="max-w-[32em] text-xl text-on-navy">{s.hero.intro}</p>
+        <div class="mt-2 flex flex-wrap gap-3.5">
+          <BookDemoButton variant="accent" size="lg" />
+          <a href="#walkthrough" class="font-display rounded border-[1.5px] border-white px-6 py-[14px] text-base text-white no-underline hover:bg-white/10">
+            {s.hero.secondaryCta}
+          </a>
         </div>
-        <div class="mt-8"><BookDemoButton /></div>
-      </ContentSection>
-    )
-  }
+      </div>
+      <div class="min-w-0 flex-[1_1_520px]">
+        <BrowserFrame>
+          <ScreenshotSlot label={s.hero.media.label} description={s.hero.media.description} ratio="16 / 10" tone="dark" />
+        </BrowserFrame>
+      </div>
+    </div>
+  </section>
 
-  {
-    services && (
-      <ContentSection section={services}>
-        <a href={coUrl('/services')} class="mt-6 inline-flex items-center gap-2 font-heading font-semibold text-navy underline underline-offset-4">
-          Constructive Operations back-office services <span aria-hidden="true">→</span>
-        </a>
-      </ContentSection>
-    )
-  }
+  <section id="platform" aria-labelledby="platform-heading" class="scroll-mt-4 py-[88px]">
+    <div class:list={[wrap, 'flex flex-col gap-8']}>
+      <div class="flex max-w-[760px] flex-col gap-3" data-reveal>
+        <SectionHeading id="platform-heading" text={s.platform.heading} />
+        <p class="text-[19px] text-ink-soft">{s.platform.intro}</p>
+      </div>
+      <ul class="flex flex-wrap gap-3.5" data-reveal>
+        {
+          s.platform.modules.map((m) => (
+            <li class="flex-[1_1_150px] rounded-md border border-line-strong p-5">
+              <span class="font-display block text-navy">{m.name}</span>
+              <span class="block text-sm text-ink-muted">{m.note}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="features" aria-labelledby="features-heading" class="scroll-mt-4 bg-surface-alt py-[88px]">
+    <div class:list={[wrap, 'flex flex-col gap-9']}>
+      <SectionHeading id="features-heading" text={s.features.heading} />
+      <div class="flex flex-wrap gap-5">
+        {
+          s.features.items.map((f) => (
+            <article class="flex min-w-0 flex-[1_1_380px] flex-col gap-3 rounded-md border border-line bg-white p-8" data-reveal>
+              <div class="h-1 w-10 bg-accent" aria-hidden="true" />
+              <h3 class="font-display text-2xl text-navy">{f.title}</h3>
+              <p class="text-ink-soft">{f.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="walkthrough" aria-labelledby="walkthrough-heading" class="scroll-mt-4 py-24">
+    <div class:list={[wrap, 'flex flex-col gap-12']}>
+      <div class="flex max-w-[760px] flex-col gap-3" data-reveal>
+        <SectionHeading id="walkthrough-heading" text={s.walkthrough.heading} />
+        <p class="text-[19px] text-ink-soft">{s.walkthrough.intro}</p>
+      </div>
+      <SundialWalkthrough steps={s.walkthrough.steps} />
+    </div>
+  </section>
+
+  <section aria-labelledby="builtby-heading" class="bg-surface-gray py-20">
+    <div class:list={[wrap, 'flex flex-wrap items-center gap-10']} data-reveal>
+      <Image src={coLogo} alt="Constructive Operations" width={220} height={112} class="h-28 w-[220px] flex-none" />
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-3">
+        <SectionHeading id="builtby-heading" text={s.builtBy.heading} size="md" />
+        <p class="text-ink-soft">{s.builtBy.paragraph}</p>
+        <p><a href={coUrl('/services')} class="font-display text-navy underline underline-offset-4">{s.builtBy.link}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" aria-labelledby="demo-heading" class="on-dark relative overflow-hidden bg-navy-deep py-24 text-white">
+    <Rings variant="corner" />
+    <div class="relative mx-auto flex max-w-[900px] flex-col items-center gap-5 px-4 text-center" data-reveal>
+      <SectionHeading id="demo-heading" text={s.demo.heading} tone="white" />
+      <p class="max-w-[34em] text-[19px] text-on-navy">{s.demo.paragraph}</p>
+      <BookDemoButton variant="accent" size="lg" />
+    </div>
+  </section>
 </SundialLayout>

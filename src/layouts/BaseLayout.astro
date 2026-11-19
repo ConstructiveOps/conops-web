@@ -40,8 +40,14 @@ const siteName = brand === 'sundial' ? 'Sundial' : site.company.name;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <Font cssVariable="--font-montserrat" preload />
-    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-eurostyle" preload />
+    <Font cssVariable="--font-roboto" preload={[{ weight: '400', style: 'normal' }, { weight: '700' }]} />
+    {/* Turn on fade-in-on-scroll only when motion is allowed (see global.css). */}
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        document.documentElement.classList.add('reveal-on');
+      }
+    </script>
     <slot name="head" />
   </head>
   <body class="min-h-dvh flex flex-col bg-surface text-ink antialiased">
@@ -59,5 +65,22 @@ const siteName = brand === 'sundial' ? 'Sundial' : site.company.name;
     {/* Reserved slot for the chat widget (built later). Renders nothing until enabled in site.ts. */}
     <slot name="chat-widget"><ChatWidget /></slot>
     <Analytics />
+    <script>
+      // Fade each [data-reveal] section in once, the first time it scrolls into view.
+      if (document.documentElement.classList.contains('reveal-on')) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-revealed');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
+        );
+        document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>

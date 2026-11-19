@@ -4,7 +4,8 @@
 import { Image } from 'astro:assets';
 import { site } from '../data/site';
 import { coUrl, sundialUrl } from '../lib/urls';
-import coLogoDark from '../assets/brand/co-logo-dark.png';
+import coLogoWhite from '../assets/brand/co-logo-dark.png';
+import sundialLogoWhite from '../assets/brand/sundial-logo-white.png';
 
 interface Props {
   brand: 'co' | 'sundial';
@@ -12,55 +13,42 @@ interface Props {
 const { brand } = Astro.props;
 const year = new Date().getFullYear();
 const co = (path: string) => (brand === 'co' ? path : coUrl(path));
+const link = 'text-white underline underline-offset-4 hover:text-on-navy';
 ---
 
-<footer class="bg-navy text-white">
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
-    <div>
-      {
-        brand === 'co' ? (
-          <Image src={coLogoDark} alt="Constructive Operations" width={180} height={91} class="h-[91px] w-[180px]" />
-        ) : (
-          <>
-            <p class="font-heading text-2xl font-bold tracking-[0.2em]">SUNDIAL</p>
-            <p class="mt-1 text-sm text-white/80">Operations Intelligence</p>
-            <p class="mt-4 text-sm text-white/80">
-              Sundial is built by{' '}
-              <a href={co('/')} class="underline underline-offset-4">Constructive Operations</a>.
-            </p>
-          </>
-        )
-      }
-    </div>
-
-    <div>
-      <h2 class="font-heading text-sm font-semibold lowercase text-white">contact.</h2>
-      <address class="mt-3 space-y-1 text-sm not-italic text-white/85">
-        {site.company.address.map((line) => <p>{line}</p>)}
-        <p><a href={`mailto:${site.company.email}`} class="underline underline-offset-4">{site.company.email}</a></p>
-        <p><a href={site.company.phoneHref} class="underline underline-offset-4">{site.company.phone}</a></p>
-      </address>
-    </div>
-
-    <div>
-      <h2 class="font-heading text-sm font-semibold lowercase text-white">links.</h2>
-      <ul class="mt-3 space-y-1 text-sm text-white/85">
-        {brand === 'co' && <li><a href={sundialUrl('/')} class="underline underline-offset-4">Sundial</a></li>}
-        {brand === 'sundial' && <li><a href={co('/services')} class="underline underline-offset-4">Back-office services</a></li>}
-        <li><a href={co('/privacy')} class="underline underline-offset-4">Privacy</a></li>
-        <li><a href={site.social.linkedin} rel="noopener" class="underline underline-offset-4">LinkedIn</a></li>
-        <li><a href={site.social.facebook} rel="noopener" class="underline underline-offset-4">Facebook</a></li>
-        {
-          brand === 'co' && (
-            <li>
-              <a href={site.clientPortalUrl} rel="noopener" class="underline underline-offset-4">Client Portal Login</a>
-            </li>
-          )
-        }
-      </ul>
-    </div>
-  </div>
-  <div class="border-t border-white/15">
-    <p class="mx-auto max-w-6xl px-4 py-4 text-xs text-white/75 sm:px-6">© {year} {site.company.legalName}</p>
-  </div>
+<footer class="on-dark bg-navy text-white">
+  {
+    brand === 'co' ? (
+      <div class="mx-auto flex max-w-[1240px] flex-wrap justify-between gap-10 px-4 py-14 sm:px-[6vw] xl:px-0">
+        <div class="flex flex-[1_1_260px] flex-col gap-3.5">
+          <Image src={coLogoWhite} alt="Constructive Operations" width={190} height={96} class="h-24 w-[190px]" />
+          <address class="text-[15px] not-italic text-on-navy">
+            {site.company.address.join(', ')}
+            <br />
+            <a href={`mailto:${site.company.email}`} class={link}>{site.company.email}</a>
+            <br />
+            <a href={site.company.phoneHref} class={link}>{site.company.phone}</a>
+          </address>
+        </div>
+        <div class="flex flex-[1_1_180px] flex-col gap-2 text-[15px]">
+          <h2 class="font-display text-[15px] text-white">links.</h2>
+          <a href={sundialUrl('/')} class={link}>Sundial</a>
+          <a href={co('/privacy')} class={link}>Privacy</a>
+          <a href={site.social.linkedin} rel="noopener" class={link}>LinkedIn</a>
+          <a href={site.clientPortalUrl} rel="noopener" class={link}>Client Portal Login</a>
+        </div>
+        <p class="flex-[1_1_220px] self-end text-sm text-on-navy">© {year} {site.company.legalName}</p>
+      </div>
+    ) : (
+      <div class="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 px-4 py-12 sm:px-[6vw] xl:px-0">
+        <Image src={sundialLogoWhite} alt="Sundial" width={240} height={80} class="h-20 w-60" />
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-[15px]">
+          <a href={co('/services')} class={link}>Back-office services</a>
+          <a href={co('/privacy')} class={link}>Privacy</a>
+          <a href={site.social.linkedin} rel="noopener" class={link}>LinkedIn</a>
+        </div>
+        <p class="text-sm text-on-navy">© {year} {site.company.legalName}</p>
+      </div>
+    )
+  }
 </footer>

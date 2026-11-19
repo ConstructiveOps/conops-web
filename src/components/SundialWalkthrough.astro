@@ -1,0 +1,117 @@
+---
+// The Sundial walkthrough: five steps, each with copy on the left and media
+// on the right (src/data/sundial.ts → walkthrough.steps).
+//
+// Each step can later take:
+//   video  — a file in public/media/, played muted + looped while the step is in view
+//   poster — an image in public/media/, shown before play and under reduced motion
+//   frame  — 'desktop' (browser frame) or 'phone' (phone frame)
+// Until a video is supplied the step shows a ScreenshotSlot with the mock-up's
+// bracketed description. The step number fills with the accent while in view.
+// Never link or embed the demo portal here.
+import ScreenshotSlot from './ScreenshotSlot.astro';
+import BrowserFrame from './BrowserFrame.astro';
+import type { WalkthroughStep } from '../data/sundial';
+
+interface Props {
+  steps: readonly WalkthroughStep[];
+}
+const { steps } = Astro.props;
+---
+
+<ol class="flex flex-col gap-12" data-walkthrough>
+  {
+    steps.map((step, i) => (
+      <li class="wt-step flex flex-wrap items-center gap-x-14 gap-y-8" data-reveal>
+        <div class="flex min-w-0 flex-[1_1_360px] gap-5">
+          <span
+            aria-hidden="true"
+            class="wt-num font-display flex size-12 flex-none items-center justify-center rounded-full border-2 border-navy bg-white text-lg text-navy motion-safe:transition-colors"
+          >
+            {i + 1}
+          </span>
+          <div class="flex flex-col gap-1.5">
+            <h3 class="font-display text-2xl leading-snug text-navy">
+              <span class="sr-only">Step {i + 1}: </span>
+              {step.title}
+            </h3>
+            <p class="text-ink-soft">{step.body}</p>
+          </div>
+        </div>
+
+        <div class="min-w-0 flex-[1_1_480px]">
+          {
+            step.video ? (
+              step.frame === 'phone' ? (
+                <div class="mx-auto w-[min(300px,80%)] rounded-[36px] border-[10px] border-ink bg-ink p-1 shadow-xl">
+                  <video
+                    class="wt-video block aspect-[9/19.5] w-full rounded-[26px] object-cover"
+                    src={step.video}
+                    poster={step.poster}
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-label={step.slot.description}
+                  />
+                </div>
+              ) : (
+                <BrowserFrame>
+                  <video
+                    class="wt-video block aspect-video w-full rounded-md object-cover"
+                    src={step.video}
+                    poster={step.poster}
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-label={step.slot.description}
+                  />
+                </BrowserFrame>
+              )
+            ) : (
+              <ScreenshotSlot label={step.slot.label} description={step.slot.description} ratio="16 / 9" />
+            )
+          }
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<script>
+  // Mark the step in view as active; play its video (muted) while in view.
+  // Under reduced motion videos never autoplay: the poster stays.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const steps = document.querySelectorAll<HTMLElement>('[data-walkthrough] .wt-step');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const step = e.target as HTMLElement;
+          step.toggleAttribute('data-active', e.isIntersecting);
+          const video = step.querySelector<HTMLVideoElement>('video');
+          if (!video || reduce) continue;
+          if (e.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    steps.forEach((s) => io.observe(s));
+  }
+</script>
+
+<style>
+  .wt-step[data-active] .wt-num {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  /* Before any step scrolls into view (or without JavaScript), step 1 is shown active, as in the mock-up. */
+  [data-walkthrough]:not(:has([data-active])) .wt-step:first-child .wt-num {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+</style>

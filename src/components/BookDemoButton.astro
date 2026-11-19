@@ -1,19 +1,24 @@
 ---
 // The one call to action on both sites: "book a demo" (Microsoft Bookings).
 // Never replace this with a login or any link into the demo portal.
+// The `accent` variant is for Sundial pages and the home Sundial section only.
 import { site } from '../data/site';
 
 interface Props {
-  variant?: 'solid' | 'inverse' | 'outline';
+  variant?: 'navy' | 'white' | 'outline' | 'outline-white' | 'accent';
   label?: string;
+  size?: 'md' | 'lg';
   class?: string;
 }
-const { variant = 'solid', label = 'Book a demo', class: className = '' } = Astro.props;
+const { variant = 'navy', label = 'Book a demo', size = 'md', class: className = '' } = Astro.props;
 const styles = {
-  solid: 'bg-navy text-white hover:bg-navy-deep',
-  inverse: 'bg-white text-navy hover:bg-surface-alt',
-  outline: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
+  navy: 'bg-navy text-white hover:bg-navy-deep',
+  white: 'bg-white text-navy hover:bg-on-navy',
+  outline: 'border-[1.5px] border-navy bg-white text-navy hover:bg-surface-alt',
+  'outline-white': 'border-[1.5px] border-white text-white hover:bg-white/10',
+  accent: 'bg-accent text-on-accent hover:brightness-110',
 };
+const sizes = { md: 'px-[22px] py-3 text-[15px]', lg: 'px-7 py-[15px] text-[17px]' };
 ---
 
 <a
@@ -21,8 +26,9 @@ const styles = {
   target="_blank"
   rel="noopener"
   class:list={[
-    'inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 font-heading text-sm font-semibold tracking-wide motion-safe:transition-colors',
+    'font-display inline-flex items-center justify-center rounded text-center leading-tight motion-safe:transition-colors',
     styles[variant],
+    sizes[size],
     className,
   ]}
 >

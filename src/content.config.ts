@@ -37,8 +37,13 @@ const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
+    /** One-sentence description (wording from the data sheet). */
     summary: z.string(),
+    /** Process icon from src/assets/process (icon01 … icon10). */
+    icon: z.enum(['icon01', 'icon02', 'icon03', 'icon04', 'icon05', 'icon06', 'icon07', 'icon08', 'icon09', 'icon10']),
     order: z.number(),
+    /** The five points from page 4 of the deck. */
+    points: z.array(z.string()).length(5),
   }),
 });
 

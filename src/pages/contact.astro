@@ -13,13 +13,13 @@ const { title, description, heading, intro } = (await getPage('contact')).data;
 
 <SiteLayout title={title} description={description}>
   <PageIntro heading={heading} intro={intro}>
-    <div class="mt-6"><BookDemoButton label="Book a 30-minute demo" /></div>
+    <div class="mt-8"><BookDemoButton size="lg" label="Book a 30-minute demo" /></div>
   </PageIntro>
 
-  <section aria-label="Contact form and details" class="mx-auto grid max-w-6xl gap-12 px-4 pb-20 sm:px-6 md:grid-cols-3">
+  <section aria-label="Contact form and details" class="mx-auto grid max-w-[1240px] gap-12 px-4 py-20 sm:px-[6vw] md:grid-cols-3 xl:px-0">
     <div class="md:col-span-2">
-      <h2 class="font-heading text-xl font-bold lowercase text-navy">send a message.</h2>
-      <div class="mt-4 min-h-[28rem]">
+      <h2 class="font-heading text-2xl font-bold lowercase text-navy">send a message.</h2>
+      <div class="mt-4">
         <ContactForm
           client:visible
           endpoint={site.contactFormEndpoint}
@@ -30,8 +30,8 @@ const { title, description, heading, intro } = (await getPage('contact')).data;
       </div>
     </div>
     <div>
-      <h2 class="font-heading text-xl font-bold lowercase text-navy">reach us.</h2>
-      <address class="mt-4 space-y-2 not-italic text-ink-muted">
+      <h2 class="font-heading text-2xl font-bold lowercase text-navy">reach us.</h2>
+      <address class="mt-4 space-y-2 not-italic text-ink-soft">
         {site.company.address.map((line) => <p>{line}</p>)}
         <p>Email: <a class="text-navy underline" href={`mailto:${site.company.email}`}>{site.company.email}</a></p>
         <p>Phone: <a class="text-navy underline" href={site.company.phoneHref}>{site.company.phone}</a></p>

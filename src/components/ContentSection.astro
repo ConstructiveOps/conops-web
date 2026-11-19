@@ -8,19 +8,19 @@ interface Props {
   tone?: 'plain' | 'alt' | 'navy';
 }
 const { section, tone = 'plain' } = Astro.props;
-const bg = { plain: 'bg-white', alt: 'bg-surface-alt', navy: 'bg-navy' }[tone];
-const textTone = tone === 'navy' ? 'text-white/90' : 'text-ink-muted';
+const bg = { plain: 'bg-white', alt: 'bg-surface-alt', navy: 'bg-navy on-dark' }[tone];
+const textTone = tone === 'navy' ? 'text-on-navy' : 'text-ink-soft';
 ---
 
-<section id={section.id} aria-labelledby={`${section.id}-heading`} class:list={[bg, 'scroll-mt-6']}>
-  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+<section id={section.id} aria-labelledby={`${section.id}-heading`} class:list={[bg, 'scroll-mt-4']}>
+  <div class="mx-auto max-w-[1240px] px-4 py-20 sm:px-[6vw] xl:px-0" data-reveal>
     <SectionHeading id={`${section.id}-heading`} text={section.heading} tone={tone === 'navy' ? 'white' : 'navy'} />
-    <div class:list={['mt-4 max-w-3xl space-y-4 text-lg', textTone]}>
+    <div class:list={['mt-4 max-w-[40em] space-y-4', textTone]}>
       {section.paragraphs.map((p) => <Text text={p} />)}
     </div>
     {
       section.bullets.length > 0 && (
-        <ul class:list={['mt-6 max-w-3xl list-disc space-y-2 pl-6 text-lg', textTone]}>
+        <ul class:list={['mt-6 max-w-[40em] list-disc space-y-2 pl-6', textTone]}>
           {section.bullets.map((b) => <Text as="li" text={b} />)}
         </ul>
       )

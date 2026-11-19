@@ -1,6 +1,7 @@
 ---
-// Top-of-page heading + intro paragraphs. Pass `display` for the large
-// sentence-case hero heading (home); otherwise uses the lowercase house style.
+// Top-of-page heading + intro paragraphs on the light gray band used by the
+// mock-ups. `display` uses the EuroStyle headline (landing pages); otherwise
+// the lowercase Roboto 700 house style.
 import SectionHeading from './SectionHeading.astro';
 import Text from './Text.astro';
 
@@ -12,16 +13,18 @@ interface Props {
 const { heading, intro, display = false } = Astro.props;
 ---
 
-<div class="mx-auto max-w-6xl px-4 pb-10 pt-14 sm:px-6 sm:pt-20">
-  {
-    display ? (
-      <h1 class="max-w-4xl font-heading text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">{heading}</h1>
-    ) : (
-      <SectionHeading text={heading} level={1} />
-    )
-  }
-  <div class="mt-6 max-w-3xl space-y-4 text-lg text-ink-muted">
-    {intro.map((p) => <Text text={p} />)}
+<div class="bg-surface-gray">
+  <div class="mx-auto max-w-[1240px] px-4 pb-16 pt-16 sm:px-[6vw] sm:pt-20 xl:px-0">
+    {
+      display ? (
+        <h1 class="font-display max-w-4xl text-[32px] leading-[1.08] text-navy sm:text-[clamp(30px,3.5vw,48px)]">{heading}</h1>
+      ) : (
+        <SectionHeading text={heading} level={1} />
+      )
+    }
+    <div class="mt-5 max-w-[34em] space-y-4 text-[19px] text-ink-soft">
+      {intro.map((p) => <Text text={p} />)}
+    </div>
+    <slot />
   </div>
-  <slot />
 </div>

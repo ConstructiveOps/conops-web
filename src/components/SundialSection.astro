@@ -1,0 +1,42 @@
+---
+// Sundial section on Constructive Operations pages, linking to sundialcrm.com.
+// `accent` (amber) is allowed on the HOME page's Sundial section only; the
+// services page uses it without the accent.
+import Rings from './Rings.astro';
+import SectionHeading from './SectionHeading.astro';
+import ScreenshotSlot from './ScreenshotSlot.astro';
+import { home } from '../data/home';
+import { sundialUrl } from '../lib/urls';
+
+interface Props {
+  accent?: boolean;
+}
+const { accent = false } = Astro.props;
+const copy = home.sundial;
+---
+
+<section id="sundial" aria-labelledby="sundial-heading" class="on-dark relative overflow-hidden bg-navy-deep text-white">
+  <Rings variant="corner" />
+  <div class="relative mx-auto flex max-w-[1240px] flex-wrap items-center gap-14 px-4 py-24 sm:px-[6vw] xl:px-0" data-reveal>
+    <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-[18px]">
+      {accent && <div class="h-1 w-16 bg-accent" aria-hidden="true" />}
+      <SectionHeading id="sundial-heading" text={copy.heading} tone="white" class="sm:text-[44px]" />
+      <p class="font-display text-[21px] text-white">{copy.lead}</p>
+      <p class="text-on-navy">{copy.paragraph}</p>
+      <div class="mt-2">
+        <a
+          href={sundialUrl('/')}
+          class:list={[
+            'font-display inline-block rounded px-[26px] py-[15px] text-base no-underline',
+            accent ? 'bg-accent text-on-accent hover:brightness-110' : 'bg-white text-navy hover:bg-on-navy',
+          ]}
+        >
+          {copy.cta}
+        </a>
+      </div>
+    </div>
+    <div class="min-w-0 flex-[1_1_480px]">
+        <ScreenshotSlot label={copy.recording.label} description={copy.recording.description} ratio="16 / 10" tone="dark" />
+    </div>
+  </div>
+</section>

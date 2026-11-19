@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home hero with the animated process</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+@font-face{font-family:'EuroStyle';src:url(/_blob/fae548263b8eb5eb73de8e50b01f74b2) format('truetype');font-weight:400;font-style:normal;font-display:swap}
+body{margin:0}
+a{color:#ffffff}a:hover{color:#dfe6ee}
+@keyframes pc0{0%,6.0%{opacity:0;transform:translateY(14px)}9.0%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn0{0%,6.0%{opacity:.28;transform:scale(.82)}8.5%{opacity:1;transform:scale(1.1)}11.0%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc0{animation:pc0 22s ease-out infinite}.pn0{animation:pn0 22s ease-out infinite}
+@keyframes pc1{0%,13.2%{opacity:0;transform:translateY(14px)}16.2%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn1{0%,13.2%{opacity:.28;transform:scale(.82)}15.7%{opacity:1;transform:scale(1.1)}18.2%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc1{animation:pc1 22s ease-out infinite}.pn1{animation:pn1 22s ease-out infinite}
+@keyframes pc2{0%,20.4%{opacity:0;transform:translateY(14px)}23.4%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn2{0%,20.4%{opacity:.28;transform:scale(.82)}22.9%{opacity:1;transform:scale(1.1)}25.4%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc2{animation:pc2 22s ease-out infinite}.pn2{animation:pn2 22s ease-out infinite}
+@keyframes pc3{0%,27.6%{opacity:0;transform:translateY(14px)}30.6%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn3{0%,27.6%{opacity:.28;transform:scale(.82)}30.1%{opacity:1;transform:scale(1.1)}32.6%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc3{animation:pc3 22s ease-out infinite}.pn3{animation:pn3 22s ease-out infinite}
+@keyframes pc4{0%,34.8%{opacity:0;transform:translateY(14px)}37.8%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn4{0%,34.8%{opacity:.28;transform:scale(.82)}37.3%{opacity:1;transform:scale(1.1)}39.8%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc4{animation:pc4 22s ease-out infinite}.pn4{animation:pn4 22s ease-out infinite}
+@keyframes pc5{0%,42.0%{opacity:0;transform:translateY(14px)}45.0%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn5{0%,42.0%{opacity:.28;transform:scale(.82)}44.5%{opacity:1;transform:scale(1.1)}47.0%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc5{animation:pc5 22s ease-out infinite}.pn5{animation:pn5 22s ease-out infinite}
+@keyframes pc6{0%,49.2%{opacity:0;transform:translateY(14px)}52.2%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn6{0%,49.2%{opacity:.28;transform:scale(.82)}51.7%{opacity:1;transform:scale(1.1)}54.2%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc6{animation:pc6 22s ease-out infinite}.pn6{animation:pn6 22s ease-out infinite}
+@keyframes pc7{0%,56.4%{opacity:0;transform:translateY(14px)}59.4%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn7{0%,56.4%{opacity:.28;transform:scale(.82)}58.9%{opacity:1;transform:scale(1.1)}61.4%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc7{animation:pc7 22s ease-out infinite}.pn7{animation:pn7 22s ease-out infinite}
+@keyframes pc8{0%,63.6%{opacity:0;transform:translateY(14px)}66.6%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn8{0%,63.6%{opacity:.28;transform:scale(.82)}66.1%{opacity:1;transform:scale(1.1)}68.6%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc8{animation:pc8 22s ease-out infinite}.pn8{animation:pn8 22s ease-out infinite}
+@keyframes pc9{0%,70.8%{opacity:0;transform:translateY(14px)}73.8%,90%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+@keyframes pn9{0%,70.8%{opacity:.28;transform:scale(.82)}73.3%{opacity:1;transform:scale(1.1)}75.8%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:.28;transform:scale(.82)}}
+.pc9{animation:pc9 22s ease-out infinite}.pn9{animation:pn9 22s ease-out infinite}
+@keyframes pline{0%,6%{transform:scaleX(0)}76%,90%{transform:scaleX(1);opacity:1}95%,100%{transform:scaleX(1);opacity:0}}
+.pline{animation:pline 22s linear infinite;transform-origin:left center}
+@keyframes pcount{0%,74%{opacity:0;transform:translateY(10px)}79%,90%{opacity:1;transform:none}95%,100%{opacity:0}}
+.pcount{animation:pcount 22s ease-out infinite}
+@media (prefers-reduced-motion: reduce){[class^='pc'],[class^='pn'],.pline,.pcount{animation:none!important;opacity:1!important;transform:none!important}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; position: relative; overflow: hidden; background: #023568; color: #ffffff; font-family: Roboto, system-ui, sans-serif; display: flex; flex-direction: column">
+<div aria-hidden="true" style="position: absolute; right: -230px; top: -260px; width: 560px; height: 560px; border-radius: 50%; border: 44px solid #9ca1a4; opacity: 0.35"></div>
+<div aria-hidden="true" style="position: absolute; left: -170px; bottom: -210px; width: 380px; height: 380px; border-radius: 50%; border: 30px solid #9ca1a4; opacity: 0.35"></div>
+
+<header style="position: relative; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px">
+<img src="/_blob/8921c5fcedbbd290a9c8af3c9837da60" alt="Constructive Operations" style="height: 64px; width: auto">
+<nav aria-label="Main" style="display: flex; align-items: center; gap: 30px; font-family: EuroStyle, Roboto, sans-serif; font-size: 17px">
+<a href="Main.dc.html" style="text-decoration: none; padding: 12px 0">services.</a>
+<a href="Sundial.dc.html" style="text-decoration: none; padding: 12px 0">sundial.</a>
+<a href="Main.dc.html" style="text-decoration: none; padding: 12px 0">about.</a>
+<a href="Main.dc.html" style="text-decoration: none; padding: 12px 0">contact.</a>
+<a href="Main.dc.html" style="text-decoration: none; background: #ffffff; color: #023568; padding: 12px 22px; border-radius: 4px">Book a demo</a>
+</nav>
+</header>
+
+<div style="position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; padding: 18px 56px 0">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 800px">
+<div style="font-size: 16px; color: #dfe6ee"><span style="font-weight: 700; color: #ffffff">Constructive</span> <span style="font-style: italic">(adjective)</span> &nbsp;1. helping to improve; promoting further development or advancement</div>
+<h1 style="margin: 0; font-family: EuroStyle, Roboto, sans-serif; font-weight: 400; font-size: 46px; line-height: 1.12; color: #ffffff">White-Labeled Solar Operations, Done For You</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.5; color: #dfe6ee">We create designs, submit permits, handle utility interconnection, process finance packages, and manage all homeowner communication, all under your brand.</p>
+</div>
+<div style="flex: none; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; padding-bottom: 6px">
+<a href="Main.dc.html" style="text-decoration: none; background: #ffffff; color: #023568; font-family: EuroStyle, Roboto, sans-serif; font-size: 18px; padding: 15px 28px; border-radius: 4px">Book a 30-minute demo</a>
+<div class="pcount" style="font-size: 15px; color: #ffffff; text-align: right"><span style="font-weight: 700">15 steps</span> handled by our team. <span style="font-weight: 700">5</span> by yours.</div>
+</div>
+</div>
+
+<div style="position: relative; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 28px">
+<div style="display: flex; align-items: baseline; gap: 14px; padding: 0 8px"><div style="font-weight: 700; font-size: 30px; color: #ffffff">our team.</div><div style="font-size: 14px; color: #dfe6ee">everything above the line</div></div>
+<div style="position: relative; display: flex">
+<div aria-hidden="true" style="position: absolute; left: 4%; right: 4%; top: 207px; height: 4px; background: #2d5786; border-radius: 2px"></div>
+<div aria-hidden="true" class="pline" style="position: absolute; left: 4%; right: 4%; top: 207px; height: 4px; background: #ffffff; border-radius: 2px"></div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc0" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Welcome Call</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn0" src="/_blob/a701908b5215ef475172eda1d30a1205" alt="Contract" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc0" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #c3c8cc; text-align: center">Solar Sale Closed / Contract Execution</div></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc1" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Site Visit Scheduling</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn1" src="/_blob/0951b907142593d9fa068ba154199a0d" alt="Customer contact" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc1" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc2" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Contract Review &amp; Design</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn2" src="/_blob/0fef1c182fa52dca64c035034c771cbc" alt="Site visit" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc2" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #c3c8cc; text-align: center">Site Visit Completed / Photos Captured</div></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc3" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Design Complete</div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">NTP Approval (from Client, Customer, Finance)</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn3" src="/_blob/e1b2e6426bc3e6cf27c6a49d35489d34" alt="Design" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc3" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc4" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Permit, Utility, &amp; HOA Applications Submitted</div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Permit Approved</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn4" src="/_blob/31374b975e0a19b8c6d0c226a38330e1" alt="Permitting" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc4" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc5" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">BOM Created &amp; Sent to Client</div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Installation Scheduled with Customer</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn5" src="/_blob/4ab40314c6b3a208792ca15413c81c92" alt="Installation" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc5" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #c3c8cc; text-align: center">Installation Completed</div></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc6" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Finance Substantial Package Submitted</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn6" src="/_blob/6f87c79cca8c8fa3087964fcd4802c21" alt="Finance" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc6" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #c3c8cc; text-align: center">Final Inspection Completed / Install Photos Captured</div></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc7" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Utility PTO Submission</div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Monitoring Setup</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn7" src="/_blob/07b61b055b89c4ec6529ebb7529b3429" alt="Utility and monitoring" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc7" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc8" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">PTO Received</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn8" src="/_blob/b30c3ee92fc7e422f9398158dee33a54" alt="Activation" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc8" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #c3c8cc; text-align: center">System Commissioned &amp; Activated</div></div>
+</div>
+<div style="position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center">
+<div class="pc9" style="height: 150px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 10px"><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Customer Survey &amp; Referral Requests</div><div style="font-size: 13px; line-height: 1.3; font-weight: 500; color: #ffffff; text-align: center">Post-Activation Service Coordination</div><div aria-hidden="true" style="width: 1px; height: 16px; background: #9ca1a4"></div></div>
+<img class="pn9" src="/_blob/4b7ce9f80e4962351cdeeaece7b90488" alt="Survey and service" style="width: 104px; height: 104px; margin: 6px 0">
+<div class="pc9" style="height: 96px; width: 100%; box-sizing: border-box; padding: 0 5px; display: flex; flex-direction: column; align-items: center; gap: 10px"></div>
+</div>
+</div>
+<div style="display: flex; align-items: baseline; gap: 14px; padding: 0 8px"><div style="font-weight: 700; font-size: 30px; color: #c3c8cc">your team.</div><div style="font-size: 14px; color: #c3c8cc">sell it, build it, switch it on</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

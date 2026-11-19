@@ -1,0 +1,12 @@
+---
+// A simple browser-window frame (three dots) around a screenshot or recording.
+---
+
+<div class="overflow-hidden rounded-[10px] bg-navy-panel shadow-[0_20px_48px_rgba(0,0,0,0.35)]">
+  <div aria-hidden="true" class="flex gap-[7px] bg-[#123f70] px-3.5 py-3">
+    <span class="size-[11px] rounded-full bg-[#9fb4cc]"></span>
+    <span class="size-[11px] rounded-full bg-[#9fb4cc]"></span>
+    <span class="size-[11px] rounded-full bg-[#9fb4cc]"></span>
+  </div>
+  <div class="p-3"><slot /></div>
+</div>

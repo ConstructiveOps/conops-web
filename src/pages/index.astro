@@ -1,69 +1,112 @@
 ---
-// Home — constructiveoperations.com/. Copy: src/content/pages/home.md
+// Home — constructiveoperations.com/. Spec: design-reference/home.reference.html
+// with the animated process hero (hero-process.reference.html).
+// Copy: src/data/home.ts, src/data/process.ts, src/content/services/*.md.
+import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import PageIntro from '../components/PageIntro.astro';
-import ContentSection from '../components/ContentSection.astro';
+import ProcessHero from '../components/ProcessHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServiceList from '../components/ServiceList.astro';
-import SundialPromo from '../components/SundialPromo.astro';
-import BookDemoButton from '../components/BookDemoButton.astro';
-import { getPage } from '../lib/content';
+import SundialSection from '../components/SundialSection.astro';
+import ScreenshotSlot from '../components/ScreenshotSlot.astro';
+import ContactForm from '../components/islands/ContactForm.tsx';
+import { home } from '../data/home';
+import { site } from '../data/site';
+import structurePhoto from '../assets/photos/pascal-meier.jpg';
+import leavesPhoto from '../assets/photos/concrete-structure.jpg';
+import sproutPhoto from '../assets/photos/masaaki-komori.jpg';
 
-const page = await getPage('home');
-const { title, description, heading, intro, sections, definition } = page.data;
-const find = (id: string) => sections.find((s) => s.id === id);
-const about = find('about');
-const solution = find('solution');
-const brand = find('brand');
-const contact = find('contact');
+const wrap = 'mx-auto max-w-[1240px] px-4 sm:px-[6vw] xl:px-0';
 ---
 
-<SiteLayout title={title} description={description}>
-  <PageIntro heading={heading} intro={intro} display>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <BookDemoButton />
-      <a href="/services" class="inline-flex items-center rounded-md border-2 border-navy px-5 py-3 font-heading text-sm font-semibold text-navy">Our services</a>
-    </div>
-  </PageIntro>
+<SiteLayout title={home.title} description={home.description} headerTone="navy">
+  <ProcessHero />
 
-  {
-    definition && (
-      <section aria-label="Definition of constructive" class="bg-navy">
-        <div class="mx-auto max-w-6xl px-4 py-12 text-white sm:px-6">
-          <p class="font-heading text-3xl font-bold">
-            {definition.word} <span class="font-body text-lg font-normal italic text-white/80">({definition.partOfSpeech})</span>
-          </p>
-          <p class="mt-3 text-lg text-white/90">1. {definition.meaning}</p>
-          {definition.synonyms.length > 0 && (
-            <p class="mt-2 text-sm text-white/75">Synonyms: {definition.synonyms.join(', ')}</p>
-          )}
-        </div>
-      </section>
-    )
-  }
+  <section aria-label="At a glance" class="border-t border-white/10 bg-navy-deep py-9 text-white">
+    <dl class:list={[wrap, 'flex flex-wrap justify-between gap-x-12 gap-y-7']}>
+      {
+        home.stats.map((s) => (
+          <div class="flex flex-[1_1_200px] flex-col-reverse">
+            <dt class="text-[15px] text-on-navy">{s.label}</dt>
+            <dd class="font-display text-[34px] leading-[1.1] sm:text-[38px]">{s.figure}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
 
-  {about && <ContentSection section={about} />}
-
-  <section id="services" aria-labelledby="services-heading" class="bg-surface-alt scroll-mt-6">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <SectionHeading id="services-heading" text="services." />
-      <div class="mt-8"><ServiceList /></div>
+  <section id="services" aria-labelledby="services-heading" class="scroll-mt-4 py-24">
+    <div class:list={[wrap, 'flex flex-col gap-10']}>
+      <div class="flex max-w-[760px] flex-col gap-3" data-reveal>
+        <SectionHeading id="services-heading" text={home.services.heading} />
+        <p class="text-[19px] text-ink-soft">{home.services.intro}</p>
+      </div>
+      <ServiceList />
     </div>
   </section>
 
-  {solution && <ContentSection section={solution} />}
-  {brand && <ContentSection section={brand} tone="alt" />}
-
-  <SundialPromo />
-
-  {
-    contact && (
-      <ContentSection section={contact} tone="navy">
-        <div class="mt-8 flex flex-wrap gap-4">
-          <BookDemoButton variant="inverse" label="Book a 30-minute demo" />
-          <a href="/contact" class="inline-flex items-center rounded-md border-2 border-white px-5 py-3 font-heading text-sm font-semibold text-white">Contact us</a>
+  <section id="about" aria-label="About and your brand" class="scroll-mt-4 bg-surface-alt py-24">
+    <div class:list={[wrap, 'flex flex-wrap gap-14']}>
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-4" data-reveal>
+        <SectionHeading text={home.about.heading} />
+        <p class="font-display text-[21px] text-navy">{home.about.lead}</p>
+        {home.about.paragraphs.map((p) => <p class="text-ink-soft">{p}</p>)}
+        <div class="mt-4 grid grid-cols-5 gap-4">
+          <Image
+            src={structurePhoto}
+            alt="Stepped concrete facade of a building"
+            widths={[320, 480, 720]}
+            sizes="(min-width: 1024px) 300px, 55vw"
+            class="col-span-3 aspect-[3/4] h-auto w-full rounded-md object-cover"
+          />
+          <Image
+            src={leavesPhoto}
+            alt="Green leaves against a concrete wall"
+            widths={[240, 360, 540]}
+            sizes="(min-width: 1024px) 200px, 40vw"
+            class="col-span-2 aspect-[3/4] h-auto w-full self-end rounded-md object-cover object-bottom"
+          />
         </div>
-      </ContentSection>
-    )
-  }
+      </div>
+
+      <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-4 rounded-md border border-line bg-white p-9" data-reveal>
+        <SectionHeading text={home.brand.heading} />
+        <p class="text-ink-soft">{home.brand.paragraph}</p>
+        <Image
+          src={sproutPhoto}
+          alt="A small plant growing from a concrete wall"
+          widths={[480, 720, 1080]}
+          sizes="(min-width: 1024px) 500px, 90vw"
+          class="aspect-[16/9] h-auto w-full rounded object-cover"
+        />
+        <ScreenshotSlot label={home.brand.visual.label} description={home.brand.visual.description} ratio="16 / 7" />
+      </div>
+    </div>
+  </section>
+
+  <SundialSection accent />
+
+  <section aria-labelledby="reviews-heading" class="py-[88px]">
+    <div class="mx-auto flex max-w-[900px] flex-col items-center gap-5 px-4 text-center" data-reveal>
+      <SectionHeading id="reviews-heading" text={home.reviews.heading} />
+      <ScreenshotSlot label={home.reviews.slot.label} description={home.reviews.slot.description} class="w-full bg-surface-alt" />
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-heading" class="scroll-mt-4 bg-surface-gray py-24">
+    <div class:list={[wrap, 'flex flex-wrap gap-12']}>
+      <div class="flex min-w-0 max-w-[720px] flex-[1_1_420px] flex-col gap-5" data-reveal>
+        <SectionHeading id="contact-heading" text={home.contact.heading} />
+        <p class="text-ink-soft">{home.contact.paragraph}</p>
+        <div>
+          <ContactForm client:visible endpoint={site.contactFormEndpoint} isDev={import.meta.env.DEV} email={site.company.email} bookingUrl={site.bookingUrl} />
+        </div>
+      </div>
+      <address class="flex min-w-0 flex-[1_1_280px] flex-col gap-1 self-start pt-2 not-italic text-ink-soft" data-reveal>
+        {site.company.address.map((line) => <span>{line}</span>)}
+        <a href={`mailto:${site.company.email}`} class="mt-2 text-navy underline">{site.company.email}</a>
+        <a href={site.company.phoneHref} class="text-navy underline">{site.company.phone}</a>
+      </address>
+    </div>
+  </section>
 </SiteLayout>
