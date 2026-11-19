@@ -2,6 +2,20 @@
 
 Newest first. One entry per session.
 
+## 2026-11-19 — Review fixes (fonts, logos, Facebook, 390px / reduced motion)
+
+- EuroStyle kept only at 22px+ (headlines, sub-headlines, stats, card titles raised
+  to 22px+); nav, buttons, footer "links." and small text now Roboto 500.
+- Home header: wide logo at 48px on navy (white version generated from the navy
+  wide logo). Sundial header logo at 64px.
+- Facebook back in the Constructive Operations footer only.
+- Checked at 390px: no horizontal overflow on any page (measured in a 390px
+  frame: page width equals viewport, no element past the right edge).
+- Checked with reduced motion forced on (headless Chrome
+  `--force-prefers-reduced-motion`): the fade-in class is never set, the hero
+  shows its finished state with no animation, everything visible on load.
+- `npm run check`: passed (see report).
+
 ## 2026-11-19 — Home and Sundial pages to the approved design
 
 - Fonts: EuroStyle (from brand/fonts, converted to woff2, one weight, no faux bold)

@@ -75,8 +75,10 @@ from them.
   address, chat widget switch, nav): `src/data/site.ts`.
 - Colours and fonts (tokens): `src/styles/global.css` (`@theme`) and the
   `fonts` block in `astro.config.mjs`. EuroStyle (one weight, `font-display` utility,
-  never bold) for the main headline, nav, buttons and card titles; Roboto 700 for the
-  lowercase section headings; Roboto 400/500 for body. EuroStyle woff2 is made from
+  never bold) ONLY at 22px and up: main headlines, section sub-headlines, stat numbers
+  and card titles (card titles at least 22px). It is too thin below that, so nav links,
+  buttons, small labels and anything else under 22px use Roboto 500 (`font-medium`).
+  Roboto 700 for the lowercase section headings; Roboto 400/500 for body. EuroStyle woff2 is made from
   `brand/fonts/EuroStyle-Normal.ttf` by `npm run fonts:convert`.
 - Accent amber (`bg-accent`, text `text-on-accent`) on Sundial pages and the home
   page's Sundial section ONLY.

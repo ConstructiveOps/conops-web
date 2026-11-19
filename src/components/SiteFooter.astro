@@ -31,10 +31,11 @@ const link = 'text-white underline underline-offset-4 hover:text-on-navy';
           </address>
         </div>
         <div class="flex flex-[1_1_180px] flex-col gap-2 text-[15px]">
-          <h2 class="font-display text-[15px] text-white">links.</h2>
+          <h2 class="text-[15px] font-medium text-white">links.</h2>
           <a href={sundialUrl('/')} class={link}>Sundial</a>
           <a href={co('/privacy')} class={link}>Privacy</a>
           <a href={site.social.linkedin} rel="noopener" class={link}>LinkedIn</a>
+          <a href={site.social.facebook} rel="noopener" class={link}>Facebook</a>
           <a href={site.clientPortalUrl} rel="noopener" class={link}>Client Portal Login</a>
         </div>
         <p class="flex-[1_1_220px] self-end text-sm text-on-navy">© {year} {site.company.legalName}</p>

@@ -6,7 +6,7 @@ import BookDemoButton from './BookDemoButton.astro';
 import { coNav, sundialNav } from '../data/site';
 import { navHref, sundialUrl } from '../lib/urls';
 import coLogoWide from '../assets/brand/co-logo-wide.png';
-import coLogoWhite from '../assets/brand/co-logo-dark.png';
+import coLogoWideWhite from '../assets/brand/co-logo-wide-white.png';
 import sundialLogo from '../assets/brand/sundial-logo.png';
 
 interface Props {
@@ -29,9 +29,9 @@ const linkColor = navy ? 'text-white hover:text-on-navy' : 'text-navy hover:text
     <a href={homeHref} class="inline-flex shrink-0 items-center">
       {
         brand === 'sundial' ? (
-          <Image src={sundialLogo} alt="Sundial, operations intelligence" width={180} height={60} loading="eager" class="h-[60px] w-[180px]" />
+          <Image src={sundialLogo} alt="Sundial, operations intelligence" width={192} height={64} loading="eager" class="h-16 w-48" />
         ) : navy ? (
-          <Image src={coLogoWhite} alt="Constructive Operations" width={126} height={64} loading="eager" class="h-16 w-[126px]" />
+          <Image src={coLogoWideWhite} alt="Constructive Operations" width={284} height={48} loading="eager" class="h-12 w-[284px] max-[400px]:h-10 max-[400px]:w-[236px]" />
         ) : (
           <Image src={coLogoWide} alt="Constructive Operations" width={236} height={40} loading="eager" class="h-10 w-[236px]" />
         )
@@ -40,7 +40,7 @@ const linkColor = navy ? 'text-white hover:text-on-navy' : 'text-navy hover:text
 
     {
       !minimal && (
-        <nav aria-label="Main" class="font-display hidden items-center gap-7 text-[15px] lg:flex">
+        <nav aria-label="Main" class="hidden items-center gap-7 text-[15px] font-medium lg:flex">
           <ul class="flex items-center gap-7">
             {nav.map((item) => (
               <li>
@@ -71,7 +71,7 @@ const linkColor = navy ? 'text-white hover:text-on-navy' : 'text-navy hover:text
             </svg>
           </summary>
           <nav aria-label="Main" class="absolute right-0 z-40 mt-2 w-64 rounded border border-line bg-white p-4 shadow-lg">
-            <ul class="font-display space-y-2 text-navy">
+            <ul class="space-y-2 font-medium text-navy">
               {nav.map((item) => (
                 <li>
                   <a href={navHref(item, brand)} class="block py-2">{item.label}</a>

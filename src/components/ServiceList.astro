@@ -18,7 +18,7 @@ const iconFor = (name: string) => icons[`../assets/process/${name}.png`]?.defaul
         <li class="flex flex-col gap-3 rounded border border-line border-t-4 border-t-navy bg-white p-7" data-reveal>
           <div class="flex items-center gap-4">
             {icon && <Image src={icon} alt="" width={56} height={56} class="size-14 shrink-0" />}
-            <h3 class="font-display text-xl leading-tight text-navy">{s.data.title}</h3>
+            <h3 class="font-display text-[22px] leading-tight text-navy">{s.data.title}</h3>
           </div>
           <p class="text-base text-ink-muted">{s.data.summary}</p>
           <ul class="mt-1 space-y-1.5 border-t border-line pt-3 text-[15px] text-ink-soft">

@@ -2,6 +2,19 @@
 
 Newest first. Each entry: date, decision, why.
 
+## 2026-11-19 — Review fixes at 1440px
+
+- **EuroStyle only at 22px and up** (too thin below that): headlines, section
+  sub-headlines, stat numbers, card titles (raised to at least 22px). Nav links,
+  buttons, the footer "links." heading and other small text moved to Roboto 500.
+- **Home header logo:** the wide logo at 48px on navy. No white version of the wide
+  logo exists in brand/, so `src/assets/brand/co-logo-wide-white.png` is generated
+  from `brand/Wide Logo - Full Size.png` by `scripts/make-white-wide-logo.mjs`
+  (navy to white, mark ring stays gray, "OPERATIONS" lightened to #DFE6EE). Replace
+  with an official white wide logo when one exists.
+- **Sundial header logo** at 64px.
+- **Facebook restored** in the Constructive Operations footer only, beside LinkedIn.
+
 ## 2026-11-19 — Home and Sundial pages built to the approved design
 
 - **Fonts changed:** EuroStyle (one weight, self-hosted woff2, synthetic bold off)

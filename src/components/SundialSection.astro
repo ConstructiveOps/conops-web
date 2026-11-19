@@ -21,13 +21,13 @@ const copy = home.sundial;
     <div class="flex min-w-0 flex-[1_1_420px] flex-col gap-[18px]">
       {accent && <div class="h-1 w-16 bg-accent" aria-hidden="true" />}
       <SectionHeading id="sundial-heading" text={copy.heading} tone="white" class="sm:text-[44px]" />
-      <p class="font-display text-[21px] text-white">{copy.lead}</p>
+      <p class="font-display text-[22px] leading-snug text-white">{copy.lead}</p>
       <p class="text-on-navy">{copy.paragraph}</p>
       <div class="mt-2">
         <a
           href={sundialUrl('/')}
           class:list={[
-            'font-display inline-block rounded px-[26px] py-[15px] text-base no-underline',
+            'inline-block rounded px-[26px] py-[15px] text-base font-medium no-underline',
             accent ? 'bg-accent text-on-accent hover:brightness-110' : 'bg-white text-navy hover:bg-on-navy',
           ]}
         >

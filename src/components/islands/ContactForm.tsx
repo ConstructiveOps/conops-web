@@ -25,7 +25,7 @@ export default function ContactForm({ endpoint, isDev, email, bookingUrl }: Prop
   if (!connected && !isDev) {
     return (
       <div className="rounded border border-line-strong bg-white p-6">
-        <p className="font-display text-lg text-navy">The contact form is coming soon.</p>
+        <p className="text-lg font-medium text-navy">The contact form is coming soon.</p>
         <p className="mt-2 text-ink-soft">
           Email us at{' '}
           <a className="text-navy underline" href={`mailto:${email}`}>
@@ -71,7 +71,7 @@ export default function ContactForm({ endpoint, isDev, email, bookingUrl }: Prop
   if (status === 'sent') {
     return (
       <div role="status" className="rounded border border-navy/30 bg-white p-6">
-        <p className="font-display text-lg text-navy">Thanks, we'll be in touch.</p>
+        <p className="text-lg font-medium text-navy">Thanks, we'll be in touch.</p>
       </div>
     );
   }
@@ -126,11 +126,11 @@ export default function ContactForm({ endpoint, isDev, email, bookingUrl }: Prop
         <button
           type="submit"
           disabled={!connected || status === 'sending'}
-          className="font-display rounded bg-navy px-[26px] py-[15px] text-base text-white hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded bg-navy px-[26px] font-medium py-[15px] text-base text-white hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === 'sending' ? 'Sending…' : 'Send'}
         </button>
-        <a href={bookingUrl} target="_blank" rel="noopener" className="font-display text-base text-navy underline-offset-4 hover:underline">
+        <a href={bookingUrl} target="_blank" rel="noopener" className="text-base font-medium text-navy underline-offset-4 hover:underline">
           or pick a time for a demo
         </a>
       </div>
